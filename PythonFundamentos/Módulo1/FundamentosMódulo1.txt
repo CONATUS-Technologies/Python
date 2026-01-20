@@ -1,0 +1,629 @@
+================================================================================
+                	INTRODUÇÃO À SINTAXE DO PYTHON
+                           NÍVEL INICIANTE
+================================================================================
+
+
+
+================================================================================
+1. SINTAXE BÁSICA
+================================================================================
+
+1.1 INDENTAÇÃO
+--------------------------------------------------------------------------------
+Python usa indentação (espaços ou tabs) para definir blocos de código, 
+substituindo as chaves {} de outras linguagens.
+
+Exemplo:
+if True:
+    print("Este código está indentado")
+    print("Faz parte do bloco if")
+print("Este código não está indentado")
+
+Regras importantes:
+- Use 4 espaços por nível de indentação (padrão PEP 8)
+- Não misture tabs e espaços
+- Todos os comandos de um mesmo bloco devem ter a mesma indentação
+
+1.2 COMENTÁRIOS
+--------------------------------------------------------------------------------
+Comentários são trechos ignorados pelo interpretador, usados para documentação.
+
+Comentário de linha única:
+# Este é um comentário de uma linha
+print("Olá")  # Comentário no final da linha
+
+Comentário de múltiplas linhas:
+'''
+Este é um comentário
+de múltiplas linhas
+usando aspas triplas simples
+'''
+
+"""
+Este também é um comentário
+de múltiplas linhas
+usando aspas triplas duplas
+"""
+
+1.3 ESTRUTURA DE UM PROGRAMA PYTHON
+--------------------------------------------------------------------------------
+Um programa Python típico possui:
+
+# Importações (bibliotecas necessárias)
+import math
+
+# Definições de funções
+def saudacao(nome):
+    return f"Olá, {nome}!"
+
+# Código principal
+if __name__ == "__main__":
+    resultado = saudacao("Maria")
+    print(resultado)
+
+
+================================================================================
+2. TIPOS DE DADOS BÁSICOS
+================================================================================
+
+2.1 NÚMEROS
+--------------------------------------------------------------------------------
+Python possui três tipos numéricos principais:
+
+int (Inteiros):
+idade = 25
+negativo = -10
+grande = 1000000
+
+float (Decimais):
+altura = 1.75
+pi = 3.14159
+notacao_cientifica = 2.5e3  # 2500.0
+
+complex (Complexos):
+complexo = 3 + 4j
+outro_complexo = complex(2, 5)  # 2+5j
+
+2.2 STRINGS
+--------------------------------------------------------------------------------
+Strings são sequências de caracteres, imutáveis em Python.
+
+Criação de strings:
+nome = "Python"
+frase = 'Olá, mundo!'
+multilinhas = """Esta string
+ocupa várias
+linhas"""
+
+Operações básicas:
+concatenacao = "Olá" + " " + "mundo"  # "Olá mundo"
+repeticao = "Ha" * 3  # "HaHaHa"
+tamanho = len("Python")  # 6
+acesso = "Python"[0]  # "P"
+fatia = "Python"[0:3]  # "Pyt"
+
+Métodos úteis:
+texto = "python"
+texto.upper()  # "PYTHON"
+texto.capitalize()  # "Python"
+texto.replace("p", "j")  # "jython"
+texto.split()  # ["python"]
+
+2.3 BOOLEANOS
+--------------------------------------------------------------------------------
+Valores lógicos verdadeiro ou falso.
+
+verdadeiro = True
+falso = False
+
+Valores considerados False:
+- False
+- None
+- 0, 0.0
+- "", [], (), {}, set()
+
+Todos os outros valores são considerados True.
+
+2.4 NONETYPE
+--------------------------------------------------------------------------------
+Representa a ausência de valor.
+
+vazio = None
+resultado = print("teste")  # print retorna None
+
+Uso comum:
+def funcao_sem_retorno():
+    pass  # Não retorna nada, implicitamente retorna None
+
+
+================================================================================
+3. VARIÁVEIS E OPERADORES
+================================================================================
+
+3.1 ATRIBUIÇÃO DINÂMICA
+--------------------------------------------------------------------------------
+Python não exige declaração de tipo. O tipo é inferido automaticamente.
+
+numero = 10  # int
+numero = 3.14  # agora é float
+numero = "texto"  # agora é string
+
+Atribuições múltiplas:
+a, b, c = 1, 2, 3
+x = y = z = 0
+
+Troca de valores:
+a, b = 5, 10
+a, b = b, a  # Agora a=10 e b=5
+
+3.2 OPERADORES ARITMÉTICOS
+--------------------------------------------------------------------------------
++ (adição)          5 + 3 = 8
+- (subtração)       5 - 3 = 2
+* (multiplicação)   5 * 3 = 15
+/ (divisão)         5 / 2 = 2.5
+// (divisão inteira) 5 // 2 = 2
+% (módulo/resto)    5 % 2 = 1
+** (exponenciação)  5 ** 2 = 25
+
+3.3 OPERADORES COMPARATIVOS
+--------------------------------------------------------------------------------
+== (igual a)              5 == 5 → True
+!= (diferente de)         5 != 3 → True
+> (maior que)             5 > 3 → True
+< (menor que)             5 < 3 → False
+>= (maior ou igual)       5 >= 5 → True
+<= (menor ou igual)       3 <= 5 → True
+
+3.4 OPERADORES LÓGICOS
+--------------------------------------------------------------------------------
+and (E lógico)     True and False → False
+or (OU lógico)     True or False → True
+not (NÃO lógico)   not True → False
+
+Exemplos:
+idade = 25
+if idade >= 18 and idade < 65:
+    print("Adulto em idade ativa")
+
+3.5 OPERADORES DE IDENTIDADE
+--------------------------------------------------------------------------------
+is (verifica se são o mesmo objeto)
+is not (verifica se não são o mesmo objeto)
+
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+a == b  # True (mesmo conteúdo)
+a is b  # False (objetos diferentes)
+a is c  # True (mesmo objeto)
+
+3.6 OPERADORES DE ASSOCIAÇÃO
+--------------------------------------------------------------------------------
+in (verifica se está contido)
+not in (verifica se não está contido)
+
+lista = [1, 2, 3, 4, 5]
+3 in lista  # True
+10 in lista  # False
+
+texto = "Python"
+"Py" in texto  # True
+"Java" not in texto  # True
+
+
+================================================================================
+4. ESTRUTURAS DE CONTROLE
+================================================================================
+
+4.1 CONDICIONAIS
+--------------------------------------------------------------------------------
+if (SE):
+idade = 20
+if idade >= 18:
+    print("Maior de idade")
+
+if-else (SE-SENÃO):
+if idade >= 18:
+    print("Maior de idade")
+else:
+    print("Menor de idade")
+
+if-elif-else (SE-SENÃO SE-SENÃO):
+nota = 85
+if nota >= 90:
+    print("A")
+elif nota >= 80:
+    print("B")
+elif nota >= 70:
+    print("C")
+else:
+    print("D")
+
+Operador ternário:
+status = "Adulto" if idade >= 18 else "Menor"
+
+4.2 LOOPS - FOR
+--------------------------------------------------------------------------------
+O loop for itera sobre sequências (listas, strings, ranges, etc).
+
+Iterando sobre range:
+for i in range(5):  # 0, 1, 2, 3, 4
+    print(i)
+
+for i in range(2, 10, 2):  # 2, 4, 6, 8
+    print(i)
+
+Iterando sobre listas:
+frutas = ["maçã", "banana", "laranja"]
+for fruta in frutas:
+    print(fruta)
+
+Com índice (enumerate):
+for indice, fruta in enumerate(frutas):
+    print(f"{indice}: {fruta}")
+
+4.3 LOOPS - WHILE
+--------------------------------------------------------------------------------
+O loop while continua enquanto a condição for verdadeira.
+
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1
+
+Loop infinito (com break):
+while True:
+    resposta = input("Digite 'sair' para encerrar: ")
+    if resposta == "sair":
+        break
+
+4.4 BREAK, CONTINUE, PASS
+--------------------------------------------------------------------------------
+break (interrompe o loop):
+for i in range(10):
+    if i == 5:
+        break  # Para quando i é 5
+    print(i)  # Imprime 0, 1, 2, 3, 4
+
+continue (pula para próxima iteração):
+for i in range(5):
+    if i == 2:
+        continue  # Pula quando i é 2
+    print(i)  # Imprime 0, 1, 3, 4
+
+pass (não faz nada, placeholder):
+for i in range(5):
+    if i == 2:
+        pass  # Não faz nada
+    print(i)  # Imprime todos: 0, 1, 2, 3, 4
+
+
+================================================================================
+5. ESTRUTURAS DE DADOS
+================================================================================
+
+5.1 LISTAS
+--------------------------------------------------------------------------------
+Listas são coleções ordenadas e mutáveis.
+
+Criação:
+lista_vazia = []
+numeros = [1, 2, 3, 4, 5]
+mista = [1, "texto", 3.14, True]
+
+Acesso e modificação:
+numeros[0]  # 1 (primeiro elemento)
+numeros[-1]  # 5 (último elemento)
+numeros[1:3]  # [2, 3] (fatiamento)
+numeros[2] = 10  # Modifica terceiro elemento
+
+Métodos principais:
+lista = [1, 2, 3]
+lista.append(4)  # Adiciona ao final: [1, 2, 3, 4]
+lista.insert(0, 0)  # Insere na posição: [0, 1, 2, 3, 4]
+lista.remove(2)  # Remove o valor 2: [0, 1, 3, 4]
+lista.pop()  # Remove e retorna último: [0, 1, 3]
+lista.pop(0)  # Remove e retorna índice 0: [1, 3]
+lista.extend([4, 5])  # Adiciona outra lista: [1, 3, 4, 5]
+lista.sort()  # Ordena: [1, 3, 4, 5]
+lista.reverse()  # Inverte: [5, 4, 3, 1]
+len(lista)  # Tamanho: 4
+
+List comprehension:
+quadrados = [x**2 for x in range(5)]  # [0, 1, 4, 9, 16]
+pares = [x for x in range(10) if x % 2 == 0]  # [0, 2, 4, 6, 8]
+
+5.2 TUPLAS
+--------------------------------------------------------------------------------
+Tuplas são coleções ordenadas e imutáveis.
+
+Criação:
+tupla_vazia = ()
+coordenadas = (10, 20)
+valores = (1, "texto", 3.14)
+um_elemento = (5,)  # Vírgula necessária
+
+Acesso:
+coordenadas[0]  # 10
+coordenadas[-1]  # 20
+coordenadas[0:2]  # (10, 20)
+
+Não podem ser modificadas:
+# coordenadas[0] = 15  # ERRO!
+
+Desempacotamento:
+x, y = coordenadas  # x=10, y=20
+
+Métodos:
+tupla = (1, 2, 2, 3)
+tupla.count(2)  # 2 (quantas vezes aparece)
+tupla.index(3)  # 3 (posição do elemento)
+
+5.3 DICIONÁRIOS
+--------------------------------------------------------------------------------
+Dicionários armazenam pares chave-valor, sem ordem garantida (Python <3.7).
+
+Criação:
+dicionario_vazio = {}
+pessoa = {
+    "nome": "João",
+    "idade": 30,
+    "cidade": "São Paulo"
+}
+
+Acesso e modificação:
+pessoa["nome"]  # "João"
+pessoa["idade"] = 31  # Modifica valor
+pessoa["profissao"] = "Programador"  # Adiciona nova chave
+
+Métodos principais:
+pessoa.keys()  # Retorna todas as chaves
+pessoa.values()  # Retorna todos os valores
+pessoa.items()  # Retorna pares (chave, valor)
+pessoa.get("nome")  # "João"
+pessoa.get("email", "Não informado")  # Valor padrão
+pessoa.pop("cidade")  # Remove e retorna valor
+pessoa.update({"idade": 32})  # Atualiza valores
+
+Iteração:
+for chave in pessoa:
+    print(chave, pessoa[chave])
+
+for chave, valor in pessoa.items():
+    print(f"{chave}: {valor}")
+
+Dict comprehension:
+quadrados = {x: x**2 for x in range(5)}  # {0:0, 1:1, 2:4, 3:9, 4:16}
+
+5.4 CONJUNTOS (SETS)
+--------------------------------------------------------------------------------
+Conjuntos armazenam elementos únicos, sem ordem.
+
+Criação:
+conjunto_vazio = set()  # {} cria dicionário vazio!
+numeros = {1, 2, 3, 4, 5}
+letras = set("python")  # {'p', 'y', 't', 'h', 'o', 'n'}
+
+Operações:
+conjunto = {1, 2, 3}
+conjunto.add(4)  # Adiciona elemento
+conjunto.remove(2)  # Remove elemento (erro se não existir)
+conjunto.discard(5)  # Remove elemento (sem erro)
+
+Operações de conjuntos:
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+a | b  # União: {1, 2, 3, 4, 5, 6}
+a & b  # Interseção: {3, 4}
+a - b  # Diferença: {1, 2}
+a ^ b  # Diferença simétrica: {1, 2, 5, 6}
+
+Verificações:
+3 in a  # True
+{1, 2} <= a  # True (é subconjunto)
+
+
+================================================================================
+6. FUNÇÕES BÁSICAS
+================================================================================
+
+6.1 DEFINIÇÃO DE FUNÇÕES
+--------------------------------------------------------------------------------
+Funções são blocos de código reutilizáveis.
+
+Sintaxe básica:
+def nome_da_funcao(parametros):
+    """Docstring: descreve o que a função faz"""
+    # Código da função
+    return resultado
+
+Exemplo simples:
+def saudacao():
+    print("Olá, mundo!")
+
+saudacao()  # Chama a função
+
+6.2 PARÂMETROS E ARGUMENTOS
+--------------------------------------------------------------------------------
+Parâmetros posicionais:
+def soma(a, b):
+    return a + b
+
+resultado = soma(5, 3)  # 8
+
+Parâmetros com valores padrão:
+def potencia(base, expoente=2):
+    return base ** expoente
+
+potencia(5)  # 25 (usa expoente padrão)
+potencia(5, 3)  # 125
+
+Argumentos nomeados:
+def apresentar(nome, idade, cidade):
+    print(f"{nome}, {idade} anos, de {cidade}")
+
+apresentar(cidade="Rio", nome="Ana", idade=25)
+
+Parâmetros arbitrários (*args):
+def soma_todos(*numeros):
+    return sum(numeros)
+
+soma_todos(1, 2, 3, 4, 5)  # 15
+
+Parâmetros nomeados arbitrários (**kwargs):
+def exibir_info(**dados):
+    for chave, valor in dados.items():
+        print(f"{chave}: {valor}")
+
+exibir_info(nome="João", idade=30, cidade="SP")
+
+6.3 RETURN
+--------------------------------------------------------------------------------
+O return encerra a função e devolve um valor.
+
+Com retorno:
+def quadrado(x):
+    return x ** 2
+
+resultado = quadrado(5)  # 25
+
+Múltiplos retornos:
+def operacoes(a, b):
+    return a + b, a - b, a * b
+
+soma, subtracao, multiplicacao = operacoes(10, 5)
+
+Sem return (retorna None):
+def apenas_imprime(texto):
+    print(texto)
+
+resultado = apenas_imprime("Olá")  # resultado é None
+
+6.4 ESCOPO DE VARIÁVEIS
+--------------------------------------------------------------------------------
+Escopo local (dentro da função):
+def funcao():
+    variavel_local = 10  # Só existe dentro da função
+    print(variavel_local)
+
+# print(variavel_local)  # ERRO! Não existe fora da função
+
+Escopo global (fora de funções):
+variavel_global = 20
+
+def funcao():
+    print(variavel_global)  # Pode acessar
+
+funcao()
+
+Modificando variável global:
+contador = 0
+
+def incrementar():
+    global contador  # Necessário para modificar
+    contador += 1
+
+incrementar()
+print(contador)  # 1
+
+Escopo LEGB (ordem de busca):
+1. Local (função atual)
+2. Enclosing (funções externas)
+3. Global (módulo)
+4. Built-in (funções nativas do Python)
+
+x = "global"
+
+def externa():
+    x = "enclosing"
+    
+    def interna():
+        x = "local"
+        print(x)  # "local"
+    
+    interna()
+    print(x)  # "enclosing"
+
+externa()
+print(x)  # "global"
+
+
+================================================================================
+RESUMO RÁPIDO
+================================================================================
+
+CONCEITOS-CHAVE:
+- Python usa indentação para delimitar blocos
+- Tipagem dinâmica (não precisa declarar tipos)
+- Tudo é objeto
+- Listas e dicionários são mutáveis
+- Tuplas e strings são imutáveis
+- Funções podem retornar múltiplos valores
+
+BOAS PRÁTICAS:
+- Use nomes descritivos para variáveis e funções
+- Siga o padrão PEP 8 de estilo
+- Documente suas funções com docstrings
+- Evite variáveis globais quando possível
+- Prefira list comprehensions quando apropriado
+
+IMPORTANTE:
+- Estude módulos e importações
+- Aprenda sobre classes e orientação a objetos
+- Explore bibliotecas padrão (datetime, math, random, etc)
+- Pratique com exercícios e projetos pequenos
+
+
+================================================================================
+DOCUMENTAÇÃO OFICIAL DO PYTHON
+================================================================================
+
+================================================================================
+PRINCIPAL - TUTORIAL OFICIAL
+================================================================================
+https://docs.python.org/3/tutorial/index.html
+Este é o tutorial oficial do Python, perfeito para quem está começando!
+
+================================================================================
+DOCUMENTAÇÃO GERAL
+================================================================================
+https://docs.python.org/3/
+Página principal da documentação Python 3
+
+================================================================================
+PARA INICIANTES
+================================================================================
+https://www.python.org/about/gettingstarted/
+Guia "Python for Beginners"
+
+https://wiki.python.org/moin/BeginnersGuide
+Wiki com recursos para iniciantes
+
+================================================================================
+SEÇÕES ESPECÍFICAS DO TUTORIAL OFICIAL
+================================================================================
+
+Introdução e Sintaxe Básica:
+https://docs.python.org/3/tutorial/introduction.html
+
+Estruturas de Controle (if, for, while):
+https://docs.python.org/3/tutorial/controlflow.html
+
+Estruturas de Dados (listas, tuplas, dicionários, sets):
+https://docs.python.org/3/tutorial/datastructures.html
+
+Funções:
+https://docs.python.org/3/tutorial/controlflow.html#defining-functions
+
+Referência Completa da Linguagem:
+https://docs.python.org/3/reference/index.html
+
+================================================================================
+
+================================================================================
+			CONATUS TECHNOLOGIES
+================================================================================

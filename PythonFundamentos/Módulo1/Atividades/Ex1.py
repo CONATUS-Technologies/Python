@@ -1,3 +1,4 @@
+
 '''1) Desenvolva um programa que calcule a média aritmética de 
    quatro números inteiros fornecidos pelo usuário.'''
 
@@ -117,7 +118,30 @@ A = π * (r**2)
 
 print(f"\nA área do círculo é de: {A:2.2f} cm²")
 
+
 '''9) Crie um programa que inverta a ordem de dois números fornecidos pelo usuário e,
    em seguida, calcule a diferença absoluta entre eles.'''
+
+print("\n", "=" * 15, "EXERCÍCIO 9", "=" * 15)
    
-num1 =
+num1 = int(input("\nDigite o primeiro número: "))
+num2 = int(input("Digite o segundo número: "))
+
+nums = [num1, num2]
+nums.reverse()
+
+dif = abs(nums[0] - nums[1])
+
+print(f"\nA ordem dos números invertida é: \n{nums[0]:>15} - {nums[1]}")
+print(f"\nA diferença absoluta entre eles é: \n{dif:>15}")
+
+'''10) Desenvolva um programa que calcule o valor do IMC (Índice de Massa Corporal).
+   O usuário deve informar peso (kg) e altura (m). O programa deve exibir o IMC com duas
+   casas decimais.'''
+   
+kg = float(input("Digite quantos quilogramas você pesa: "))
+al = float(input("Digite quantos metros você mede: "))
+
+imc = kg / (al ** 2) 
+
+print(f"O seu IMC é de: {imc:2.2f}")
