@@ -1,6 +1,7 @@
 import lmp     
 
 lmp.limpar_terminal()
+
 '''1) Desenvolva um programa que calcule a média aritmética de 
    quatro números inteiros fornecidos pelo usuário.'''
 
@@ -14,7 +15,6 @@ n4 = int(input("Digite o quarto número: "))
 media = (n1 + n2 + n3 + n4) / 4
 
 print (f"\nA média aritmética simples dos valores é: {float(media)}")
-
 
 '''2) Crie um programa que calcule o consumo médio de combustível de um veículo e o valor 
    gasto por quilomêtro. O usuário deve informar a distância percorrida (em km), o
@@ -44,7 +44,6 @@ k = c + 273.15
 
 print(f"\nO valor de {c:2.2f} graus Celsius é de {f:2.2f} Fahrenheit e {k:2.2f} Kelvin")
 
-
 '''4) Elabore um programa que calcule o valor final de uma compra com desconto. 
    O usuário deve informar o preço original e a porcentagem de desconto. O programa deve
    exibir o valor do desconto e o preço final.'''
@@ -57,7 +56,6 @@ vd = int(input("Digite a porcentagem de desconto aplicado: "))
 vf = vo * (1 - vd / 100)
 
 print(f"O valor final da sua compra é de: {vf:2.2f} reais.")
-
 
 '''5) Desenvolva um programa que calcule o tempo total em horas, minutos e segundos
    a partir de um valor dado apenas em segundos.'''
@@ -79,7 +77,6 @@ rst = f"""\nA quantidade de {seg_in:.1f} convertida para:
         
 print(rst)
 
-
 '''6) Crie um programa que leia três notas de um aluno, calcule a média e
     informe se ele foi aprovado (média ≥ 7), em recuperação (5 ≤ média < 7)
     ou reprovado (média < 5).'''
@@ -99,7 +96,6 @@ elif ma >= 5:
 else:
     print(f"\n{'Média: ':>15} {ma:2.2f} - Reprovado.")
   
-
 '''7) Elabore um programa que converta uma quantia em reais (R$) para dólares (US$),
     considerando uma taxa de câmbio fornecida pelo usuário.'''
    
@@ -112,7 +108,6 @@ usd = real / txc
 
 print(f"\n{'Com':>10} {real:2.2f} reais, você comprará {usd:2.2f} dólares.")
 
-
 '''8) Faça um programa que calcule a área de um círculo. O usuário deve informar o raio,
    e o programa deve exibir a área com duas casas decimais (use π = 3.14159).'''
    
@@ -124,7 +119,6 @@ r = float(input("\nDigite o raio da área calculada: "))
 A = π * (r**2)
 
 print(f"\nA área do círculo é de: {A:2.2f} cm²")
-
 
 '''9) Crie um programa que inverta a ordem de dois números fornecidos pelo usuário e,
    em seguida, calcule a diferença absoluta entre eles.'''
@@ -142,7 +136,6 @@ dif = abs(nums[0] - nums[1]) #transforma os números para int indepedente do res
 print(f"\nA ordem dos números invertida é: \n{nums[0]:>15} - {nums[1]}")
 print(f"\nA diferença absoluta entre eles é: \n{dif:>15}")
 
-
 '''10) Desenvolva um programa que calcule o valor do IMC (Índice de Massa Corporal).
    O usuário deve informar peso (kg) e altura (m). O programa deve exibir o IMC com duas
    casas decimais.'''
@@ -155,7 +148,6 @@ al = float(input("Digite quantos metros você mede: "))
 imc = kg / (al ** 2) 
 
 print(f"O seu IMC é de: {imc:2.2f}")
-
 
 '''11) Desenvolva um programa que calcule o valor do juros simples de uma aplicação financeira.
    O usuário deve informar o capital inicial, a taxa de juros mensal e o tempo em meses.'''
@@ -177,7 +169,6 @@ rst1 = f"""\n{'Aplicando R$':>15} {cpt:2.2f} por {tm} meses você terá:
          """
             
 print(rst1)
-
 
 '''12) Crie um programa que converta uma velocidade de km/h para m/s e vice-versa.
    O usuário deve escolher qual conversão deseja fazer e informar o valor.
@@ -201,10 +192,10 @@ try:
       km = vlc * 3.6
       print(f"\nA velocidade de {vlc:2.2f} m/s convertida para km/h é: {km:2.2f}")
    else: 
-      print("Opção inválida!")
+      print("\nOpção inválida!")
 
 except ValueError:
-   print("ERRO: Digite apenas números.")
+   print("\nERRO: Digite apenas números.")
    
 '''13) Faça um programa que calcule a quantidade de tinta necessária para pintar uma parede.
    O usuário deve informar a altura e largura da parede (em metros) e o programa deve calcular
@@ -232,6 +223,27 @@ elif opcs == 2:
    tinta_brt = area_p / 3
    print(f"\nPara pintar a área da sua parede será necessário {tinta_brt:2.2f} litros de tinta para cada demão.")
    
+'''14) Desenvolva um programa que leia três números diferentes e exiba-os em ordem crescente.'''
+
+print("\n", "=" * 15, "EXERCÍCIO 14", "=" * 15)
+
+try:
+   nm1 = float(input("\nDigite o primeiro número: "))
+   nm2 = float(input("Digite o segundo número: "))
+   nm3 = float(input("Digite o terceiro número: "))
+   
+   if nm1 == nm2 or nm2 == nm3 or nm3 ==nm1:
+      raise ValueError ("ERRO: Digite números diferentes.")
+   
+   nms = [nm1, nm2, nm3]
+   nms.sort()  #ordena a lista de forma crescente
+   
+   print(f"\nNúmeros ordenados de forma crescente: ")
+   print(nms)
+   
+
+except ValueError: 
+   print("ERRO: Digite números diferentes.")
 
 
 
