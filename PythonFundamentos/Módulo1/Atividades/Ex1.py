@@ -314,4 +314,60 @@ except Exception as e:
     print()
     
 '''16) Elabore um programa que converta uma quantidade de horas em semanas, dias e horas.
-   Exemplo: 500 horas = 2 semanas, 6 dias e 20 horas.''' 
+   Exemplo: 500 horas = 2 semanas, 6 dias e 20 horas.'''
+   
+print("\n", "=" * 15, "EXERCÍCIO 16", "=" * 15)
+
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print("\n", "=" * 15, "CONVERSOR DE TEMPO", "=" * 15)
+
+try: 
+   qtd = int(input("\nDigite uma quantidade de horas: "))
+
+   semanas = qtd / 168
+   resto_hrs = qtd % 168
+   dias = resto_hrs / 24
+   horas = resto_hrs % 24
+   tent = 4
+   
+
+   print(f"\nDeseja converter para uma medida específica?")
+   print(f"Digite [1] para SIM:")
+   print(f"Digite [2] para NÃO:")
+
+   opcoes = int(input("\n"))
+   
+   if opcoes == 1:
+      print(f"\nPara qual medida deseja converter a quantidade de horas?")
+      print(f"\nPara SEMANAS aperte [1]:")
+      print(f"Para DIAS aperte [2]:")
+      
+      opcoes_if = int(input("\n"))
+      
+      if opcoes_if == 1:
+         print(f"A quantidade de {qtd} horas é equivalente a {semanas:2.2f} semana(s).")
+      elif opcoes_if == 2:
+         print(f"A quantidade de {qtd} horas é equivalente a {dias:2.2f} dia(s).")
+   elif opcoes == 2:
+      print(f"\nA quantidade de {qtd} horas é equivalente a: ")
+      outp_opcs2 = f"""{'':>15}{semanas:2.2f} {'= semana(s)'} 
+               {dias:2.2f} {'= dias(s)'}
+               {horas:2.2f} {'= hora(s)'}
+                  """
+      print(outp_opcs2)
+   elif opcoes != 1 or 2:
+      raise ValueError()
+   
+except ValueError: 
+   os.system('cls' if os.name == 'nt' else 'clear')
+   print("\nERRO: Digite apenas [1] ou [2]")
+   time.sleep(2)
+   os.system('cls' if os.name == 'nt' else 'clear')
+   print("\nERRO: Digite apenas [1] ou [2]")
+   time.sleep(2)
+   os.system('cls' if os.name == 'nt' else 'clear')
+   print("\nERRO: Digite apenas [1] ou [2]")
+   time.sleep(2)
+   os.system('cls' if os.name == 'nt' else 'clear')
+
