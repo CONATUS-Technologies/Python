@@ -1,0 +1,1491 @@
+================================================================================
+                    SEQUÊNCIAS DE ESCAPE EM PYTHON
+                           NÍVEL INICIANTE
+================================================================================
+
+
+
+================================================================================
+1. INTRODUÇÃO A SEQUÊNCIAS DE ESCAPE
+================================================================================
+
+1.1 O QUE SÃO SEQUÊNCIAS DE ESCAPE?
+--------------------------------------------------------------------------------
+Sequências de escape são combinações especiais de caracteres que começam com 
+uma barra invertida (\) e permitem inserir caracteres especiais em strings 
+que normalmente não poderiam ser digitados diretamente ou teriam outro 
+significado.
+
+Sem sequências de escape:
+print("Ela disse "olá"")  # ERRO! Aspas causam confusão
+
+Com sequências de escape:
+print("Ela disse \"olá\"")  # Funciona! Saída: Ela disse "olá"
+
+1.2 POR QUE USAR SEQUÊNCIAS DE ESCAPE?
+--------------------------------------------------------------------------------
+Benefícios das sequências de escape:
+- Permite incluir caracteres especiais em strings
+- Adiciona formatação ao texto (quebras de linha, tabulações)
+- Resolve conflitos com delimitadores de strings
+- Permite representar caracteres não-imprimíveis
+- Essencial para manipulação avançada de texto
+- Facilita a criação de saídas formatadas
+
+1.3 TIPOS DE SEQUÊNCIAS DE ESCAPE
+--------------------------------------------------------------------------------
+Categorias principais:
+- Formatação de texto: \n, \t, \r
+- Caracteres literais: \", \', \\
+- Caracteres especiais: \a, \b, \f, \v
+- Representação de caracteres: \xhh, \ooo, \uhhhh, \Uhhhhhhhh
+- Strings cruas (raw strings): r"texto"
+
+
+================================================================================
+2. SEQUÊNCIAS DE ESCAPE BÁSICAS
+================================================================================
+
+2.1 QUEBRA DE LINHA (\n)
+--------------------------------------------------------------------------------
+Insere uma quebra de linha (new line) no texto.
+
+Exemplo básico:
+print("Primeira linha\nSegunda linha")
+# Saída:
+# Primeira linha
+# Segunda linha
+
+Múltiplas quebras de linha:
+print("Linha 1\n\nLinha 3")
+# Saída:
+# Linha 1
+#
+# Linha 3
+
+Uso prático:
+mensagem = "Nome: João\nIdade: 25\nCidade: São Paulo"
+print(mensagem)
+# Saída:
+# Nome: João
+# Idade: 25
+# Cidade: São Paulo
+
+Criando listas formatadas:
+print("Lista de compras:\n- Arroz\n- Feijão\n- Macarrão")
+# Saída:
+# Lista de compras:
+# - Arroz
+# - Feijão
+# - Macarrão
+
+2.2 TABULAÇÃO (\t)
+--------------------------------------------------------------------------------
+Insere um espaço de tabulação (tab) no texto.
+
+Exemplo básico:
+print("Nome:\tJoão")
+print("Idade:\t25")
+# Saída:
+# Nome:   João
+# Idade:  25
+
+Criando tabelas simples:
+print("Produto\t\tPreço\t\tQuantidade")
+print("Arroz\t\tR$ 5,00\t\t10")
+print("Feijão\t\tR$ 8,00\t\t5")
+# Saída:
+# Produto     Preço       Quantidade
+# Arroz       R$ 5,00     10
+# Feijão      R$ 8,00     5
+
+Indentação de código:
+print("def funcao():")
+print("\tprint('Olá')")
+print("\treturn True")
+# Saída:
+# def funcao():
+#     print('Olá')
+#     return True
+
+Combinando \n e \t:
+print("Estrutura:\n\tItem 1\n\tItem 2\n\tItem 3")
+# Saída:
+# Estrutura:
+#     Item 1
+#     Item 2
+#     Item 3
+
+2.3 BARRA INVERTIDA (\\)
+--------------------------------------------------------------------------------
+Insere uma barra invertida literal no texto.
+
+Exemplo básico:
+print("Caminho: C:\\Users\\João\\Documents")
+# Saída: Caminho: C:\Users\João\Documents
+
+Caminhos de arquivos Windows:
+arquivo = "C:\\Program Files\\Python\\python.exe"
+print(arquivo)
+# Saída: C:\Program Files\Python\python.exe
+
+Expressões regulares:
+print("Padrão: \\d+ significa um ou mais dígitos")
+# Saída: Padrão: \d+ significa um ou mais dígitos
+
+ASCII art:
+print("   /\\")
+print("  /  \\")
+print(" /____\\")
+# Saída:
+#    /\
+#   /  \
+#  /____\
+
+2.4 ASPAS SIMPLES E DUPLAS (\' e \")
+--------------------------------------------------------------------------------
+Insere aspas literais dentro de strings.
+
+Aspas simples dentro de string com aspas duplas:
+print("Ela disse 'olá'")
+# Saída: Ela disse 'olá'
+
+Aspas duplas dentro de string com aspas simples:
+print('Ele respondeu "tudo bem?"')
+# Saída: Ele respondeu "tudo bem?"
+
+Usando escape quando necessário:
+print("Ela disse \"olá\" para mim")
+# Saída: Ela disse "olá" para mim
+
+print('O apóstrofo em I\'m funciona assim')
+# Saída: O apóstrofo em I'm funciona assim
+
+Aspas mistas:
+print("Livro: \"1984\" - 'Big Brother is watching you'")
+# Saída: Livro: "1984" - 'Big Brother is watching you'
+
+Citações:
+citacao = "\"Ser ou não ser, eis a questão\" - Shakespeare"
+print(citacao)
+# Saída: "Ser ou não ser, eis a questão" - Shakespeare
+
+
+================================================================================
+3. SEQUÊNCIAS DE ESCAPE ESPECIAIS
+================================================================================
+
+3.1 RETORNO DE CARRO (\r)
+--------------------------------------------------------------------------------
+Retorna o cursor para o início da linha (carriage return).
+
+Exemplo básico (sobrescreve texto):
+print("Olá Mundo\rOi")
+# Saída: Oi Mundo
+# "Oi" sobrescreve os dois primeiros caracteres
+
+Uso em barra de progresso:
+import time
+for i in range(101):
+    print(f"\rProgresso: {i}%", end="")
+    time.sleep(0.05)
+# Atualiza a mesma linha continuamente
+
+Status de download:
+print("Baixando...\rCompleto!   ")
+# Sobrescreve "Baixando..." com "Completo!"
+
+NOTA: Em sistemas Windows, quebra de linha completa é \r\n
+
+3.2 BACKSPACE (\b)
+--------------------------------------------------------------------------------
+Move o cursor uma posição para trás.
+
+Exemplo básico:
+print("Pythonnn\b\b")
+# Saída: Python
+# Remove os dois últimos 'n'
+
+Efeito de correção:
+print("Errro\b\bo")
+# Saída: Erro
+# Substitui 'r' por 'o'
+
+IMPORTANTE: O comportamento de \b pode variar entre sistemas
+
+3.3 FORM FEED (\f)
+--------------------------------------------------------------------------------
+Avanço de página (usado principalmente em impressoras).
+
+Exemplo:
+print("Página 1\fPágina 2")
+# Em impressoras, inicia nova página
+# No terminal, efeito varia
+
+3.4 ALERTA/BEEP (\a)
+--------------------------------------------------------------------------------
+Emite um sinal sonoro (beep) no sistema.
+
+Exemplo:
+print("Erro!\a")
+# Produz um beep de alerta
+
+print("Atenção:\a Arquivo não encontrado!")
+# Beep para chamar atenção
+
+NOTA: Pode não funcionar em todos os terminais
+
+3.5 VERTICAL TAB (\v)
+--------------------------------------------------------------------------------
+Tabulação vertical (raramente usado).
+
+Exemplo:
+print("Linha 1\vLinha 2")
+# Efeito varia conforme o sistema
+
+
+================================================================================
+4. REPRESENTAÇÃO DE CARACTERES
+================================================================================
+
+4.1 HEXADECIMAL (\xhh)
+--------------------------------------------------------------------------------
+Representa caracteres usando código hexadecimal (2 dígitos).
+
+Exemplo básico:
+print("\x48\x65\x6C\x6C\x6F")
+# Saída: Hello
+# 48=H, 65=e, 6C=l, 6C=l, 6F=o
+
+Caracteres especiais:
+print("\x40")  # Saída: @
+print("\x24")  # Saída: $
+print("\x2A")  # Saída: *
+
+Símbolos:
+print("\xA9")   # Saída: ©
+print("\xAE")   # Saída: ®
+
+Acentos:
+print("\xE1")   # Saída: á
+print("\xE9")   # Saída: é
+print("\xF3")   # Saída: ó
+
+Criando strings especiais:
+codigo = "\x50\x79\x74\x68\x6F\x6E"
+print(codigo)  # Saída: Python
+
+4.2 OCTAL (\ooo)
+--------------------------------------------------------------------------------
+Representa caracteres usando código octal (até 3 dígitos).
+
+Exemplo básico:
+print("\101\102\103")
+# Saída: ABC
+# 101=A, 102=B, 103=C
+
+Números:
+print("\060\061\062")
+# Saída: 012
+
+Caracteres especiais:
+print("\100")   # Saída: @
+print("\044")   # Saída: $
+
+IMPORTANTE: Use até 3 dígitos octais (0-7)
+
+4.3 UNICODE (\uhhhh e \Uhhhhhhhh)
+--------------------------------------------------------------------------------
+Representa caracteres Unicode usando 4 ou 8 dígitos hexadecimais.
+
+Unicode de 16 bits (\uhhhh):
+print("\u0041")     # Saída: A
+print("\u0048\u0069")  # Saída: Hi
+
+Caracteres acentuados:
+print("\u00E1")     # Saída: á
+print("\u00E9")     # Saída: é
+print("\u00F1")     # Saída: ñ
+
+Símbolos especiais:
+print("\u2665")     # Saída: ♥
+print("\u2660")     # Saída: ♠
+print("\u2663")     # Saída: ♣
+print("\u2666")     # Saída: ♦
+
+Emojis e símbolos:
+print("\u263A")     # Saída: ☺
+print("\u2713")     # Saída: ✓
+print("\u2717")     # Saída: ✗
+
+Unicode de 32 bits (\Uhhhhhhhh):
+print("\U0001F600")  # Saída: 😀
+print("\U0001F389")  # Saída: 🎉
+print("\U0001F4BB")  # Saída: 💻
+print("\U0001F680")  # Saída: 🚀
+
+Caracteres especiais de diferentes idiomas:
+print("\u03B1")     # Saída: α (alfa grego)
+print("\u03B2")     # Saída: β (beta grego)
+print("\u4E2D")     # Saída: 中 (chinês)
+print("\u0623")     # Saída: أ (árabe)
+
+Criando strings com múltiplos caracteres Unicode:
+mensagem = "Python \u2764\uFE0F Unicode!"
+print(mensagem)  # Saída: Python ❤️ Unicode!
+
+4.4 NOME DE CARACTERE UNICODE (\N{name})
+--------------------------------------------------------------------------------
+Representa caracteres Unicode usando seus nomes oficiais.
+
+Exemplos:
+print("\N{LATIN CAPITAL LETTER A}")  # Saída: A
+print("\N{COPYRIGHT SIGN}")          # Saída: ©
+print("\N{REGISTERED SIGN}")         # Saída: ®
+
+Símbolos matemáticos:
+print("\N{INFINITY}")                # Saída: ∞
+print("\N{PLUS-MINUS SIGN}")         # Saída: ±
+print("\N{DEGREE SIGN}")             # Saída: °
+
+Moedas:
+print("\N{DOLLAR SIGN}")             # Saída: $
+print("\N{EURO SIGN}")               # Saída: €
+print("\N{POUND SIGN}")              # Saída: £
+
+Setas:
+print("\N{RIGHTWARDS ARROW}")        # Saída: →
+print("\N{LEFTWARDS ARROW}")         # Saída: ←
+print("\N{UPWARDS ARROW}")           # Saída: ↑
+
+Emojis com nomes:
+print("\N{THUMBS UP SIGN}")          # Saída: 👍
+print("\N{FIRE}")                    # Saída: 🔥
+print("\N{PARTY POPPER}")            # Saída: 🎉
+
+
+================================================================================
+5. RAW STRINGS (STRINGS CRUAS)
+================================================================================
+
+5.1 O QUE SÃO RAW STRINGS?
+--------------------------------------------------------------------------------
+Raw strings tratam barras invertidas como caracteres literais, não como 
+início de sequências de escape. São definidas com 'r' ou 'R' antes das aspas.
+
+Sintaxe:
+r"texto com \n literal"
+R'outro exemplo com \t'
+
+Sem raw string (interpretado):
+print("C:\nome\teste")
+# Saída: C:
+# ome este
+# \n vira quebra de linha, \t vira tab
+
+Com raw string (literal):
+print(r"C:\nome\teste")
+# Saída: C:\nome\teste
+# Tudo é tratado literalmente
+
+5.2 USOS PRÁTICOS DE RAW STRINGS
+--------------------------------------------------------------------------------
+
+Caminhos de arquivos Windows:
+# Sem raw string - problemático
+caminho = "C:\\Users\\João\\Documents\\arquivo.txt"
+print(caminho)
+
+# Com raw string - mais limpo
+caminho = r"C:\Users\João\Documents\arquivo.txt"
+print(caminho)
+
+Expressões regulares:
+import re
+
+# Sem raw string - confuso
+padrao = "\\d+\\.\\d+"
+
+# Com raw string - mais legível
+padrao = r"\d+\.\d+"
+resultado = re.findall(padrao, "Preço: 19.99")
+print(resultado)  # ['19.99']
+
+Padrões complexos:
+email_pattern = r"[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
+url_pattern = r"https?://[^\s]+"
+telefone_pattern = r"\(\d{2}\)\s?\d{4,5}-?\d{4}"
+
+LaTeX e fórmulas matemáticas:
+formula = r"\frac{a}{b} = \sqrt{c^2 + d^2}"
+print(formula)  # Saída: \frac{a}{b} = \sqrt{c^2 + d^2}
+
+Código SQL:
+query = r"""
+SELECT * FROM usuarios 
+WHERE nome LIKE '%João%' 
+AND idade > 18
+"""
+
+JSON com caracteres especiais:
+json_str = r'{"nome": "João", "caminho": "C:\temp"}'
+
+5.3 LIMITAÇÕES DE RAW STRINGS
+--------------------------------------------------------------------------------
+
+NÃO PODE terminar com barra invertida única:
+# ERRO:
+caminho = r"C:\Users\João\"
+
+# CORRETO - Adicione algo após a barra ou concatene:
+caminho = r"C:\Users\João" + "\\"
+# ou
+caminho = r"C:\Users\João\."
+
+Aspas ainda precisam de escape ou alternância:
+# ERRO:
+texto = r"Ele disse "olá""
+
+# CORRETO:
+texto = r"Ele disse \"olá\""
+# ou use aspas diferentes
+texto = r'Ele disse "olá"'
+
+Raw strings não são completamente "cruas":
+print(r"teste\")     # ERRO!
+print(r"teste\\")    # OK - Saída: teste\\
+
+5.4 QUANDO USAR RAW STRINGS
+--------------------------------------------------------------------------------
+
+✅ USE raw strings para:
+- Caminhos de arquivos Windows
+- Expressões regulares
+- Padrões de texto com muitas barras
+- LaTeX, SQL, ou outras linguagens de marcação
+- Qualquer string onde \ aparece frequentemente
+
+❌ NÃO USE raw strings para:
+- Strings simples sem barras invertidas
+- Quando você realmente quer sequências de escape (\n, \t, etc.)
+- Strings que terminam com barra invertida única
+- Quando a legibilidade não melhora significativamente
+
+
+================================================================================
+6. STRINGS MULTILINHA
+================================================================================
+
+6.1 STRINGS TRIPLAS (""" ou ''')
+--------------------------------------------------------------------------------
+Strings delimitadas por três aspas permitem múltiplas linhas naturalmente.
+
+Sintaxe básica:
+texto = """
+Primeira linha
+Segunda linha
+Terceira linha
+"""
+print(texto)
+# Saída:
+# 
+# Primeira linha
+# Segunda linha
+# Terceira linha
+# 
+
+Sem linhas em branco extras:
+texto = """Primeira linha
+Segunda linha
+Terceira linha"""
+print(texto)
+# Saída:
+# Primeira linha
+# Segunda linha
+# Terceira linha
+
+Com aspas simples triplas:
+texto = '''
+Linha 1
+Linha 2
+Linha 3
+'''
+
+6.2 USOS PRÁTICOS DE STRINGS MULTILINHA
+--------------------------------------------------------------------------------
+
+Docstrings (documentação de funções):
+def calcular_media(numeros):
+    """
+    Calcula a média aritmética de uma lista de números.
+    
+    Parâmetros:
+        numeros (list): Lista de números
+        
+    Retorna:
+        float: A média dos números
+    """
+    return sum(numeros) / len(numeros)
+
+Mensagens longas:
+mensagem = """
+Prezado Cliente,
+
+Informamos que seu pedido #12345 foi enviado.
+Você pode acompanhar o envio pelo código: BR123456789.
+
+Atenciosamente,
+Equipe de Vendas
+"""
+print(mensagem)
+
+HTML ou XML:
+html = """
+<html>
+    <head>
+        <title>Minha Página</title>
+    </head>
+    <body>
+        <h1>Bem-vindo!</h1>
+        <p>Este é um exemplo.</p>
+    </body>
+</html>
+"""
+
+Código SQL formatado:
+query = """
+SELECT 
+    usuarios.nome,
+    pedidos.data,
+    produtos.descricao
+FROM usuarios
+INNER JOIN pedidos ON usuarios.id = pedidos.usuario_id
+INNER JOIN produtos ON pedidos.produto_id = produtos.id
+WHERE usuarios.ativo = 1
+ORDER BY pedidos.data DESC
+LIMIT 10
+"""
+
+JSON formatado:
+json_data = """
+{
+    "nome": "João Silva",
+    "idade": 30,
+    "endereco": {
+        "rua": "Av. Principal",
+        "numero": 1000,
+        "cidade": "São Paulo"
+    }
+}
+"""
+
+Poesia ou texto artístico:
+poema = """
+    No meio do caminho tinha uma pedra
+    Tinha uma pedra no meio do caminho
+    Tinha uma pedra
+    No meio do caminho tinha uma pedra
+                        - Carlos Drummond de Andrade
+"""
+
+6.3 COMBINANDO STRINGS MULTILINHA COM SEQUÊNCIAS DE ESCAPE
+--------------------------------------------------------------------------------
+
+Com sequências de escape normais:
+texto = """
+Nome:\tJoão Silva
+Idade:\t25 anos
+Status:\tAtivo
+"""
+print(texto)
+# Saída:
+# Nome:   João Silva
+# Idade:  25 anos
+# Status: Ativo
+
+Com raw strings multilinha:
+regex_pattern = r"""
+    \d{3}       # Três dígitos
+    \.          # Ponto literal
+    \d{3}       # Três dígitos
+    \.          # Ponto literal
+    \d{3}       # Três dígitos
+    -           # Hífen
+    \d{2}       # Dois dígitos
+"""
+
+Formatação complexa:
+relatorio = """
+╔═══════════════════════════════════╗
+║     RELATÓRIO DE VENDAS           ║
+╠═══════════════════════════════════╣
+║ Total de vendas:\tR$ 10.000,00 ║
+║ Produtos vendidos:\t250         ║
+║ Ticket médio:\t\tR$ 40,00      ║
+╚═══════════════════════════════════╝
+"""
+print(relatorio)
+
+6.4 REMOVENDO INDENTAÇÃO COM TEXTWRAP
+--------------------------------------------------------------------------------
+import textwrap
+
+# String indentada (por causa do código)
+texto = """
+    Este texto está indentado
+    porque está dentro do código
+    mas queremos removê-lo
+    """
+
+# Remove indentação comum
+texto_limpo = textwrap.dedent(texto)
+print(texto_limpo)
+# Saída sem indentação extra
+
+Uso prático:
+def gerar_email():
+    mensagem = textwrap.dedent("""
+        Prezado Cliente,
+        
+        Seu pedido foi confirmado.
+        Número: 12345
+        
+        Atenciosamente,
+        Loja Virtual
+    """).strip()
+    return mensagem
+
+
+================================================================================
+7. ESCAPANDO CARACTERES ESPECIAIS
+================================================================================
+
+7.1 QUANDO ESCAPAR É NECESSÁRIO
+--------------------------------------------------------------------------------
+
+Aspas dentro de strings:
+# Problema:
+texto = "Ele disse "olá""  # ERRO!
+
+# Solução 1: Escape
+texto = "Ele disse \"olá\""
+
+# Solução 2: Aspas alternadas
+texto = 'Ele disse "olá"'
+texto = "Ele disse 'olá'"
+
+# Solução 3: String tripla
+texto = """Ele disse "olá" e 'tchau'"""
+
+Barras invertidas em caminhos:
+# Problema:
+caminho = "C:\temp"  # \t vira tab!
+
+# Solução 1: Escape duplo
+caminho = "C:\\temp"
+
+# Solução 2: Raw string
+caminho = r"C:\temp"
+
+# Solução 3: Barra normal (funciona em Python)
+caminho = "C:/temp"
+
+7.2 ESCAPANDO EM DIFERENTES CONTEXTOS
+--------------------------------------------------------------------------------
+
+Em f-strings:
+nome = "João"
+mensagem = f"Ele disse \"Olá, {nome}!\""
+print(mensagem)  # Saída: Ele disse "Olá, João!"
+
+Aspas dentro de f-strings:
+valor = 42
+texto = f'O valor é "{valor}"'
+print(texto)  # Saída: O valor é "42"
+
+Caracteres especiais em f-strings:
+caminho = "arquivo.txt"
+print(f"Abrindo: {caminho}\\config")  # Saída: Abrindo: arquivo.txt\config
+
+Em expressões regulares:
+import re
+
+# Procurar por ponto literal (.)
+padrao = r"\."  # Raw string
+texto = "Fim da frase."
+resultado = re.search(padrao, texto)
+
+# Sem raw string precisa de escape duplo
+padrao = "\\."  # Equivalente
+
+Procurar barra invertida:
+padrao = r"\\"  # Procura por \
+# ou
+padrao = "\\\\"  # Escape duplo sem raw string
+
+Em caminhos de arquivos:
+# Windows
+arquivo = "C:\\Users\\João\\Desktop\\dados.txt"
+# ou
+arquivo = r"C:\Users\João\Desktop\dados.txt"
+# ou (funciona no Python)
+arquivo = "C:/Users/João/Desktop/dados.txt"
+
+7.3 CARACTERES QUE PRECISAM DE ESCAPE
+--------------------------------------------------------------------------------
+
+Dentro de strings com aspas duplas:
+\    →  \\   (barra invertida)
+"    →  \"   (aspas duplas)
+'    →  \'   (aspas simples - opcional)
+
+Dentro de strings com aspas simples:
+\    →  \\   (barra invertida)
+'    →  \'   (aspas simples)
+"    →  \"   (aspas duplas - opcional)
+
+Em expressões regulares (caracteres especiais):
+.    →  \.
+*    →  \*
++    →  \+
+?    →  \?
+[    →  \[
+]    →  \]
+(    →  \(
+)    →  \)
+{    →  \{
+}    →  \}
+^    →  \^
+$    →  \$
+|    →  \|
+\    →  \\
+
+7.4 FERRAMENTAS PARA TRABALHAR COM ESCAPE
+--------------------------------------------------------------------------------
+
+Função repr():
+texto = "Olá\nMundo"
+print(texto)         # Saída: Olá
+                     #        Mundo
+print(repr(texto))   # Saída: 'Olá\nMundo'
+
+Função ascii():
+texto = "Olá, José!"
+print(ascii(texto))  # Saída: 'Ol\xe1, Jos\xe9!'
+
+Método encode() e decode():
+texto = "Café"
+codificado = texto.encode('unicode-escape')
+print(codificado)    # b'Caf\\xe9'
+
+decodificado = codificado.decode('unicode-escape')
+print(decodificado)  # Café
+
+String para bytes:
+texto = "Olá"
+bytes_texto = texto.encode('utf-8')
+print(bytes_texto)   # b'Ol\xc3\xa1'
+
+
+================================================================================
+8. EXEMPLOS PRÁTICOS COMPLETOS
+================================================================================
+
+8.1 FORMATAÇÃO DE RELATÓRIOS
+--------------------------------------------------------------------------------
+def gerar_relatorio(vendas):
+    """Gera relatório de vendas formatado."""
+    
+    # Cabeçalho
+    relatorio = """
+╔════════════════════════════════════════════════════╗
+║           RELATÓRIO DE VENDAS - 2024               ║
+╚════════════════════════════════════════════════════╝
+"""
+    
+    # Dados
+    relatorio += "\nVendedor\t\tVendas\t\tComissão\n"
+    relatorio += "─" * 50 + "\n"
+    
+    total_vendas = 0
+    total_comissao = 0
+    
+    for vendedor, valor in vendas.items():
+        comissao = valor * 0.1
+        total_vendas += valor
+        total_comissao += comissao
+        relatorio += f"{vendedor}\t\tR$ {valor:.2f}\tR$ {comissao:.2f}\n"
+    
+    # Totais
+    relatorio += "─" * 50 + "\n"
+    relatorio += f"TOTAL\t\t\tR$ {total_vendas:.2f}\tR$ {total_comissao:.2f}\n"
+    
+    return relatorio
+
+# Teste
+vendas = {
+    "João": 15000.00,
+    "Maria": 22000.00,
+    "Pedro": 18500.00
+}
+
+print(gerar_relatorio(vendas))
+
+8.2 CRIAÇÃO DE MENUS
+--------------------------------------------------------------------------------
+def exibir_menu():
+    """Exibe menu principal do sistema."""
+    
+    menu = r"""
+    ╔════════════════════════════════════╗
+    ║         SISTEMA DE GESTÃO          ║
+    ╠════════════════════════════════════╣
+    ║  1 - Cadastrar Cliente             ║
+    ║  2 - Listar Clientes               ║
+    ║  3 - Buscar Cliente                ║
+    ║  4 - Atualizar Cadastro            ║
+    ║  5 - Remover Cliente               ║
+    ║  ────────────────────────────────  ║
+    ║  0 - Sair                          ║
+    ╚════════════════════════════════════╝
+    
+    Digite sua opção: """
+    
+    return input(menu)
+
+# Uso
+opcao = exibir_menu()
+
+8.3 VALIDAÇÃO DE ENTRADAS
+--------------------------------------------------------------------------------
+import re
+
+def validar_cpf(cpf):
+    """Valida formato de CPF usando regex com raw string."""
+    
+    # Padrão: 000.000.000-00
+    padrao = r'^\d{3}\.\d{3}\.\d{3}-\d{2}$'
+    
+    if re.match(padrao, cpf):
+        return True
+    
+    # Padrão alternativo: 00000000000
+    padrao = r'^\d{11}$'
+    return re.match(padrao, cpf) is not None
+
+def validar_email(email):
+    """Valida formato de email."""
+    
+    padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(padrao, email) is not None
+
+def validar_telefone(telefone):
+    """Valida formato de telefone brasileiro."""
+    
+    # (00) 0000-0000 ou (00) 00000-0000
+    padrao = r'^\(\d{2}\)\s?\d{4,5}-?\d{4}$'
+    return re.match(padrao, telefone) is not None
+
+# Testes
+print(validar_cpf("123.456.789-00"))      # True
+print(validar_email("user@example.com"))  # True
+print(validar_telefone("(11) 98765-4321")) # True
+
+8.4 GERAÇÃO DE CÓDIGO
+--------------------------------------------------------------------------------
+def gerar_classe_python(nome_classe, atributos):
+    """Gera código Python de uma classe."""
+    
+    # Início da classe
+    codigo = f'class {nome_classe}:\n'
+    codigo += '    """Classe gerada automaticamente."""\n\n'
+    
+    # Construtor
+    codigo += '    def __init__(self'
+    for attr in atributos:
+        codigo += f', {attr}'
+    codigo += '):\n'
+    
+    # Atribuições
+    for attr in atributos:
+        codigo += f'        self.{attr} = {attr}\n'
+    
+    # Método __repr__
+    codigo += '\n    def __repr__(self):\n'
+    codigo += f'        return f"{nome_classe}('
+    codigo += ', '.join([f'{attr}={{self.{attr}}}' for attr in atributos])
+    codigo += ')"\n'
+    
+    return codigo
+
+# Teste
+codigo = gerar_classe_python('Pessoa', ['nome', 'idade', 'cidade'])
+print(codigo)
+
+# Saída:
+# class Pessoa:
+#     """Classe gerada automaticamente."""
+#
+#     def __init__(self, nome, idade, cidade):
+#         self.nome = nome
+#         self.idade = idade
+#         self.cidade = cidade
+#
+#     def __repr__(self):
+#         return f"Pessoa(nome={self.nome}, idade={self.idade}, cidade={self.cidade})"
+
+8.5 PROCESSAMENTO DE CAMINHOS
+--------------------------------------------------------------------------------
+import os
+
+def processar_caminho(caminho):
+    """Processa e normaliza caminhos de arquivo."""
+    
+    # Converte barras para o sistema atual
+    caminho_normalizado = os.path.normpath(caminho)
+    
+    # Informações
+    info = f"""
+    Caminho original: {caminho}
+    Caminho normalizado: {caminho_normalizado}
+    Diretório: {os.path.dirname(caminho_normalizado)}
+    Arquivo: {os.path.basename(caminho_normalizado)}
+    Existe: {os.path.exists(caminho_normalizado)}
+    """
+    
+    return info
+
+# Teste com raw string
+caminho_windows = r"C:\Users\João\Documents\arquivo.txt"
+print(processar_caminho(caminho_windows))
+
+8.6 TEMPLATE DE EMAIL
+--------------------------------------------------------------------------------
+def gerar_email_boas_vindas(nome, email, senha_temporaria):
+    """Gera email de boas-vindas formatado."""
+    
+    template = f"""
+    ╔════════════════════════════════════════════════════╗
+    ║              BEM-VINDO À NOSSA PLATAFORMA!         ║
+    ╚════════════════════════════════════════════════════╝
+    
+    Olá, {nome}!
+    
+    Sua conta foi criada com sucesso. 
+    
+    Dados de acesso:
+    ┌────────────────────────────────────────────┐
+    │ Email: {email:<35} │
+    │ Senha temporária: {senha_temporaria:<24} │
+    └────────────────────────────────────────────┘
+    
+    ⚠ IMPORTANTE:
+    • Por segurança, altere sua senha no primeiro acesso
+    • Não compartilhe suas credenciais
+    • Mantenha seus dados sempre atualizados
+    
+    Para acessar a plataforma, clique no link:
+    → https://plataforma.exemplo.com/login
+    
+    Dúvidas? Entre em contato:
+    📧 suporte@exemplo.com
+    📱 (11) 1234-5678
+    
+    Atenciosamente,
+    Equipe Plataforma
+    
+    ────────────────────────────────────────────────────
+    Este é um email automático. Não responda esta mensagem.
+    """
+    
+    return template
+
+# Teste
+email = gerar_email_boas_vindas(
+    "João Silva",
+    "joao.silva@email.com",
+    "Temp@123"
+)
+print(email)
+
+8.7 ASCII ART E BANNERS
+--------------------------------------------------------------------------------
+def criar_banner(texto):
+    """Cria banner ASCII art."""
+    
+    largura = len(texto) + 4
+    
+    banner = "╔" + "═" * largura + "╗\n"
+    banner += "║  " + texto + "  ║\n"
+    banner += "╚" + "═" * largura + "╝"
+    
+    return banner
+
+def logo_python():
+    """Retorna logo Python em ASCII art."""
+    
+    logo = r"""
+       ____        __  __               
+      / __ \__  __/ /_/ /_  ____  ____  
+     / /_/ / / / / __/ __ \/ __ \/ __ \ 
+    / ____/ /_/ / /_/ / / / /_/ / / / / 
+   /_/    \__, /\__/_/ /_/\____/_/ /_/  
+         /____/                         
+    """
+    return logo
+
+# Testes
+print(criar_banner("Sistema v1.0"))
+print(logo_python())
+
+8.8 BARRA DE PROGRESSO
+--------------------------------------------------------------------------------
+import time
+
+def barra_progresso(total, prefixo='Progresso'):
+    """Exibe barra de progresso animada."""
+    
+    for i in range(total + 1):
+        porcentagem = (i / total) * 100
+        barra = '█' * int(porcentagem / 2)
+        espacos = '░' * (50 - int(porcentagem / 2))
+        
+        # \r retorna ao início da linha
+        print(f'\r{prefixo}: |{barra}{espacos}| {porcentagem:.1f}%', end='')
+        time.sleep(0.1)
+    
+    print()  # Nova linha ao final
+
+# Teste
+barra_progresso(100, 'Download')
+
+8.9 FORMATAÇÃO DE DADOS TABULARES
+--------------------------------------------------------------------------------
+def formatar_tabela(dados, colunas):
+    """Formata dados em tabela ASCII."""
+    
+    # Calcula larguras
+    larguras = [len(col) for col in colunas]
+    for linha in dados:
+        for i, valor in enumerate(linha):
+            larguras[i] = max(larguras[i], len(str(valor)))
+    
+    # Cabeçalho
+    tabela = "┌"
+    for largura in larguras:
+        tabela += "─" * (largura + 2) + "┬"
+    tabela = tabela[:-1] + "┐\n"
+    
+    # Títulos das colunas
+    tabela += "│"
+    for i, col in enumerate(colunas):
+        tabela += f" {col:<{larguras[i]}} │"
+    tabela += "\n"
+    
+    # Separador
+    tabela += "├"
+    for largura in larguras:
+        tabela += "─" * (largura + 2) + "┼"
+    tabela = tabela[:-1] + "┤\n"
+    
+    # Dados
+    for linha in dados:
+        tabela += "│"
+        for i, valor in enumerate(linha):
+            tabela += f" {str(valor):<{larguras[i]}} │"
+        tabela += "\n"
+    
+    # Rodapé
+    tabela += "└"
+    for largura in larguras:
+        tabela += "─" * (largura + 2) + "┴"
+    tabela = tabela[:-1] + "┘"
+    
+    return tabela
+
+# Teste
+colunas = ['Nome', 'Idade', 'Cidade']
+dados = [
+    ['João', 25, 'São Paulo'],
+    ['Maria', 30, 'Rio de Janeiro'],
+    ['Pedro', 22, 'Belo Horizonte']
+]
+
+print(formatar_tabela(dados, colunas))
+
+
+================================================================================
+9. PROBLEMAS COMUNS E SOLUÇÕES
+================================================================================
+
+9.1 PROBLEMA: BARRAS INVERTIDAS DUPLICADAS
+--------------------------------------------------------------------------------
+Problema:
+caminho = "C:\temp"
+print(caminho)  # Saída: C:	emp (\t vira tab!)
+
+Soluções:
+# 1. Escape duplo
+caminho = "C:\\temp"
+print(caminho)  # C:\temp
+
+# 2. Raw string
+caminho = r"C:\temp"
+print(caminho)  # C:\temp
+
+# 3. Barra normal (funciona em Python)
+caminho = "C:/temp"
+print(caminho)  # C:/temp
+
+9.2 PROBLEMA: ASPAS DENTRO DE STRINGS
+--------------------------------------------------------------------------------
+Problema:
+texto = "Ele disse "olá""  # ERRO!
+
+Soluções:
+# 1. Escape
+texto = "Ele disse \"olá\""
+
+# 2. Aspas alternadas
+texto = 'Ele disse "olá"'
+
+# 3. String tripla
+texto = """Ele disse "olá" e 'tchau'"""
+
+9.3 PROBLEMA: RAW STRING TERMINANDO EM BARRA
+--------------------------------------------------------------------------------
+Problema:
+caminho = r"C:\Users\João\"  # ERRO!
+
+Soluções:
+# 1. Remover barra final
+caminho = r"C:\Users\João"
+
+# 2. Concatenar barra
+caminho = r"C:\Users\João" + "\\"
+
+# 3. Adicionar caractere qualquer
+caminho = r"C:\Users\João\."
+
+9.4 PROBLEMA: CARACTERES UNICODE NÃO EXIBIDOS
+--------------------------------------------------------------------------------
+Problema:
+print("\u2764")  # Pode não exibir corretamente
+
+Soluções:
+# 1. Verificar encoding do terminal
+import sys
+print(sys.stdout.encoding)  # Deve ser 'utf-8'
+
+# 2. Definir encoding explicitamente
+import io
+sys.stdout = io.TextIOWrapper(
+    sys.stdout.buffer, 
+    encoding='utf-8'
+)
+
+# 3. Usar print com encoding
+texto = "\u2764"
+print(texto.encode('utf-8').decode('utf-8'))
+
+9.5 PROBLEMA: QUEBRAS DE LINHA INCONSISTENTES
+--------------------------------------------------------------------------------
+Problema:
+# Windows usa \r\n, Unix usa \n, Mac antigo usa \r
+
+Soluções:
+# 1. Use \n (Python converte automaticamente)
+texto = "Linha 1\nLinha 2"
+
+# 2. Para normalizar texto existente
+texto = texto.replace('\r\n', '\n').replace('\r', '\n')
+
+# 3. Ao ler arquivos
+with open('arquivo.txt', 'r', newline='') as f:
+    conteudo = f.read()
+
+9.6 PROBLEMA: INDENTAÇÃO EM STRINGS MULTILINHA
+--------------------------------------------------------------------------------
+Problema:
+def funcao():
+    texto = """
+    Este texto está
+    muito indentado
+    """
+    # String herda a indentação do código!
+
+Soluções:
+# 1. Usar textwrap.dedent
+import textwrap
+def funcao():
+    texto = textwrap.dedent("""
+        Agora a indentação
+        será removida
+    """).strip()
+
+# 2. Alinhar à esquerda
+def funcao():
+    texto = """\
+Este texto não tem
+indentação extra
+"""
+
+# 3. String sem quebra inicial
+def funcao():
+    texto = """Este texto
+    começa sem indentação"""
+
+9.7 PROBLEMA: SEQUÊNCIAS DE ESCAPE EM F-STRINGS
+--------------------------------------------------------------------------------
+Problema:
+nome = "João"
+# Como incluir \n em f-string?
+
+Soluções:
+# 1. Sequências de escape funcionam normalmente
+texto = f"Olá, {nome}\nBem-vindo!"
+
+# 2. Variáveis com caracteres especiais
+quebra = "\n"
+texto = f"Olá, {nome}{quebra}Bem-vindo!"
+
+# 3. Para barras invertidas literais
+caminho = r"C:\temp"
+texto = f"Arquivo em: {caminho}"
+
+9.8 PROBLEMA: REGEX COM CARACTERES ESPECIAIS
+--------------------------------------------------------------------------------
+Problema:
+import re
+# Procurar por . literal sem raw string
+padrao = "\."  # \. é interpretado como escape!
+
+Soluções:
+# 1. Use raw string (RECOMENDADO)
+padrao = r"\."
+
+# 2. Escape duplo
+padrao = "\\."
+
+# 3. Use re.escape() para strings dinâmicas
+texto_usuario = "arquivo.txt"
+padrao = re.escape(texto_usuario)
+# Escapa automaticamente caracteres especiais
+
+
+================================================================================
+10. TABELA DE REFERÊNCIA RÁPIDA
+================================================================================
+
+SEQUÊNCIAS DE ESCAPE COMUNS
+--------------------------------------------------------------------------------
+\n      Nova linha (Line Feed)
+\t      Tabulação horizontal
+\r      Retorno de carro (Carriage Return)
+\\      Barra invertida literal
+\"      Aspas duplas
+\'      Aspas simples
+\a      Alerta (beep)
+\b      Backspace
+\f      Form feed (nova página)
+\v      Tabulação vertical
+
+REPRESENTAÇÃO DE CARACTERES
+--------------------------------------------------------------------------------
+\xhh            Hexadecimal (2 dígitos)      \x41 = A
+\ooo            Octal (até 3 dígitos)        \101 = A
+\uhhhh          Unicode 16 bits (4 dígitos)  \u0041 = A
+\Uhhhhhhhh      Unicode 32 bits (8 dígitos)  \U00000041 = A
+\N{name}        Nome Unicode                 \N{LATIN CAPITAL LETTER A} = A
+
+CARACTERES UNICODE ÚTEIS
+--------------------------------------------------------------------------------
+\u2665   ♥      Coração
+\u2660   ♠      Espada
+\u2663   ♣      Paus
+\u2666   ♦      Ouros
+\u2713   ✓      Check
+\u2717   ✗      X
+\u263A   ☺      Smile
+\u2190   ←      Seta esquerda
+\u2191   ↑      Seta cima
+\u2192   →      Seta direita
+\u2193   ↓      Seta baixo
+\u00A9   ©      Copyright
+\u00AE   ®      Registered
+\u2122   ™      Trademark
+
+CAIXAS E LINHAS
+--------------------------------------------------------------------------------
+\u2500   ─      Linha horizontal
+\u2502   │      Linha vertical
+\u250C   ┌      Canto superior esquerdo
+\u2510   ┐      Canto superior direito
+\u2514   └      Canto inferior esquerdo
+\u2518   ┘      Canto inferior direito
+\u251C   ├      Junção esquerda
+\u2524   ┤      Junção direita
+\u252C   ┬      Junção superior
+\u2534   ┴      Junção inferior
+\u253C   ┼      Cruzamento
+
+CAIXAS DUPLAS
+--------------------------------------------------------------------------------
+\u2550   ═      Linha horizontal dupla
+\u2551   ║      Linha vertical dupla
+\u2554   ╔      Canto superior esquerdo duplo
+\u2557   ╗      Canto superior direito duplo
+\u255A   ╚      Canto inferior esquerdo duplo
+\u255D   ╝      Canto inferior direito duplo
+\u2560   ╠      Junção esquerda dupla
+\u2563   ╣      Junção direita dupla
+\u2566   ╦      Junção superior dupla
+\u2569   ╩      Junção inferior dupla
+\u256C   ╬      Cruzamento duplo
+
+BLOCOS E SOMBRAS
+--------------------------------------------------------------------------------
+\u2588   █      Bloco cheio
+\u2593   ▓      Sombra escura
+\u2592   ▒      Sombra média
+\u2591   ░      Sombra clara
+
+EMOJIS COMUNS (32 bits)
+--------------------------------------------------------------------------------
+\U0001F600   😀   Smile
+\U0001F602   😂   Rindo com lágrimas
+\U0001F44D   👍   Joinha
+\U0001F44E   👎   Joinha pra baixo
+\U0001F389   🎉   Festa
+\U0001F525   🔥   Fogo
+\U0001F4BB   💻   Computador
+\U0001F680   🚀   Foguete
+\U0001F4AF   💯   100
+\U00002764   ❤️    Coração vermelho
+
+
+================================================================================
+RESUMO RÁPIDO
+================================================================================
+
+SEQUÊNCIAS DE ESCAPE ESSENCIAIS:
+\n          Nova linha
+\t          Tabulação
+\\          Barra invertida literal
+\"          Aspas duplas
+\'          Aspas simples
+
+RAW STRINGS:
+r"texto\n"              # \n não é interpretado
+r"C:\Users\João"        # Ideal para caminhos Windows
+r"\d+\.\d+"            # Perfeito para regex
+
+STRINGS MULTILINHA:
+texto = """
+Linha 1
+Linha 2
+Linha 3
+"""
+
+UNICODE:
+\xhh                    # Hex: \x41 = A
+\uhhhh                  # Unicode 16: \u0041 = A
+\Uhhhhhhhh              # Unicode 32: \U00000041 = A
+\N{nome}                # Nome: \N{LATIN CAPITAL LETTER A}
+
+QUANDO USAR O QUÊ:
+String normal           → Texto simples com \n, \t, etc.
+Raw string (r"")        → Caminhos Windows, regex, LaTeX
+String tripla (""")     → Múltiplas linhas, docstrings, HTML/SQL
+Unicode (\u, \U)        → Símbolos especiais, emojis
+
+CONCEITOS-CHAVE:
+- \ inicia sequência de escape
+- Raw strings (r"") tratam \ literalmente
+- Strings triplas permitem múltiplas linhas
+- Unicode permite qualquer caractere
+- Escape é necessário para aspas e barras em strings normais
+
+BOAS PRÁTICAS:
+✅ Use raw strings para regex e caminhos
+✅ Use strings triplas para texto longo
+✅ Prefira \n a \r\n (Python normaliza)
+✅ Use Unicode names para legibilidade
+✅ Documente regex complexas com raw strings multilinha
+✅ Valide encoding ao trabalhar com Unicode
+
+❌ Não termine raw strings com \
+❌ Não escape desnecessariamente em raw strings
+❌ Evite \xhh quando \uhhhh é mais claro
+❌ Não misture tipos de aspas sem necessidade
+❌ Não use escape quando aspas alternadas funcionam
+
+DICAS:
+- repr() mostra string com escapes visíveis
+- ascii() mostra Unicode como \u escapes
+- textwrap.dedent() remove indentação extra
+- Use f-strings com escapes normalmente
+- Teste encoding com sys.stdout.encoding
+
+
+================================================================================
+DOCUMENTAÇÃO OFICIAL DO PYTHON - SEQUÊNCIAS DE ESCAPE
+================================================================================
+
+================================================================================
+PRINCIPAL - STRINGS E LITERAIS
+================================================================================
+https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals
+Referência completa sobre strings e sequências de escape
+
+================================================================================
+DOCUMENTAÇÃO DETALHADA
+================================================================================
+https://docs.python.org/3/reference/lexical_analysis.html#escape-sequences
+Tabela completa de sequências de escape
+
+https://docs.python.org/3/howto/unicode.html
+Tutorial sobre Unicode em Python
+
+https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str
+Tipo str e seus métodos
+
+https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting
+Formatação de strings estilo printf
+
+================================================================================
+CODIFICAÇÃO E UNICODE
+================================================================================
+https://docs.python.org/3/library/codecs.html
+Módulo codecs para encoding/decoding
+
+https://docs.python.org/3/library/unicodedata.html
+Módulo unicodedata para informações sobre caracteres Unicode
+
+https://www.unicode.org/charts/
+Tabelas oficiais Unicode (referência externa)
+
+================================================================================
+EXPRESSÕES REGULARES
+================================================================================
+https://docs.python.org/3/library/re.html
+Módulo re e uso de raw strings em regex
+
+https://docs.python.org/3/howto/regex.html
+Tutorial de expressões regulares
+
+================================================================================
+MÓDULOS ÚTEIS
+================================================================================
+https://docs.python.org/3/library/textwrap.html
+Módulo textwrap para formatação de texto
+
+https://docs.python.org/3/library/string.html
+Módulo string e métodos de formatação
+
+https://docs.python.org/3/library/io.html
+Módulo io para controle de encoding
+
+================================================================================
+					AGRIPPA
+================================================================================

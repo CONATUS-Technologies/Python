@@ -1,10 +1,10 @@
-import lmp  
+import limpar_terminal  
 import secrets
 import string
 import time
 import os  
 
-lmp.limpar_terminal()
+limpar_terminal.limpar_terminal()
 
 '''1) Desenvolva um programa que calcule a média aritmética de 
    quatro números inteiros fornecidos pelo usuário.'''
@@ -41,12 +41,12 @@ print(f"O custo por quilomêtro rodado é de {custo_km:2.2f} reais.")
    
 print ("\n", "=" * 15, "EXERCÍCIO 3", "=" * 15)
 
-c = float(input("\nDigite o valor da temperatura em graus Celsius (C°): "))
+celsius = float(input("\nDigite o valor da temperatura em graus Celsius (C°): "))
 
-f = (c * 9/5) + 32
-k = c + 273.15
+fahren = (celsius * 9/5) + 32
+kelvin = celsius + 273.15
 
-print(f"\nO valor de {c:2.2f} graus Celsius é de {f:2.2f} Fahrenheit e {k:2.2f} Kelvin")
+print(f"\nO valor de {celsius:2.2f} graus Celsius é de {fahren:2.2f} Fahrenheit e {kelvin:2.2f} Kelvin")
 
 '''4) Elabore um programa que calcule o valor final de uma compra com desconto. 
    O usuário deve informar o preço original e a porcentagem de desconto. O programa deve
@@ -54,12 +54,12 @@ print(f"\nO valor de {c:2.2f} graus Celsius é de {f:2.2f} Fahrenheit e {k:2.2f}
    
 print ("\n", "=" * 15, "EXERCÍCIO 4", "=" * 15)
 
-vo = float(input("\nDigite o valor original pago: "))
-vd = int(input("Digite a porcentagem de desconto aplicado: "))
+valor_original = float(input("\nDigite o valor original pago: "))
+valor_desconto = int(input("Digite a porcentagem de desconto aplicado: "))
 
-vf = vo * (1 - vd / 100)
+valor_final = valor_original * (1 - valor_desconto / 100)
 
-print(f"O valor final da sua compra é de: {vf:2.2f} reais.")
+print(f"O valor final da sua compra é de: {valor_final:2.2f} reais.")
 
 '''5) Desenvolva um programa que calcule o tempo total em horas, minutos e segundos
    a partir de um valor dado apenas em segundos.'''
@@ -67,16 +67,16 @@ print(f"O valor final da sua compra é de: {vf:2.2f} reais.")
   
 print("\n", "=" * 15, "EXERCÍCIO 5", "=" * 15)
 
-seg_in = float(input("\nInsira a quantidade em segundos para a conversão: "))
+seg_input = float(input("\nInsira a quantidade em segundos para a conversão: "))
 
-hrs = seg_in / 3600
-mts = seg_in % 3600 / 60
-seg_out = seg_in % 60
+hrs = seg_input / 3600
+mts = seg_input % 3600 / 60
+seg_output = seg_input % 60
 
-rst = f"""\nA quantidade de {seg_in:.1f} convertida para:
+rst = f"""\nA quantidade de {seg_input:.1f} convertida para:
         {'Horas é de:':<30} {hrs:>10.2f}
         {'Minutos é de:':<30} {mts:>10.2f}
-        {'Segundos é de:':<30} {seg_out:>10.2f}
+        {'Segundos é de:':<30} {seg_output:>10.2f}
         """
         
 print(rst)
@@ -188,7 +188,7 @@ try:
    ops = int(input("\n"))
 
    if ops == 1:
-      vlc = float(input("Insira o valor a ser convertido: "))
+      vlc = float(input("\nInsira o valor a ser convertido: "))
       ms = vlc / 3.6
       print(f"\nA velocidade de {vlc:2.2f} km/h convertida para m/s é: {ms:2.2f}")
    elif ops == 2:
@@ -318,8 +318,6 @@ except Exception as e:
    
 print("\n", "=" * 15, "EXERCÍCIO 16", "=" * 15)
 
-os.system('cls' if os.name == 'nt' else 'clear')
-
 print("\n", "=" * 15, "CONVERSOR DE TEMPO", "=" * 15)
 
 try: 
@@ -356,7 +354,7 @@ try:
                {horas:2.2f} {'= hora(s)'}
                   """
       print(outp_opcs2)
-   elif opcoes != 1 or 2:
+   elif opcoes != 1 or opcoes != 2:
       raise ValueError()
    
 except ValueError: 
@@ -370,4 +368,99 @@ except ValueError:
    print("\nERRO: Digite apenas [1] ou [2]")
    time.sleep(2)
    os.system('cls' if os.name == 'nt' else 'clear')
+   
+'''17) Faça um programa que calcule o peso ideal de uma pessoa.
+   Para homens: (72.7 * altura) - 58. Para mulheres: (62.1 * altura) - 44.7.
+   O usuário deve informar altura e sexo.'''
+   
+print("\n", "=" * 15, "EXERCÍCIO 17", "=" * 15)
+
+altura = None
+tentativas_altura = 4
+while tentativas_altura > 0:
+    print(f"\nDigite sua altura em metros: ")
+    
+    try:
+        altura = float(input())
+        break
+    except ValueError:
+        tentativas_altura -= 1
+        if tentativas_altura == 1:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("\nA última tentativa será possível em 30 segundos.")
+            time.sleep(5)
+            for i in range (30, 0, -1):
+                print(f"\r {i} segundos.", end = " ", flush = True)
+                time.sleep(1)
+                os.system('cls' if os.name == 'nt' else 'clear')
+                continue
+        if tentativas_altura > 0:
+            time.sleep(2)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f"\nERRO: Digite apenas números.")
+            print(f"Você tem somente {tentativas_altura} tentativas.")
+            continue
+        else:
+            print(f"\nTentativas esgotadas.")
+        break
+        
+
+if altura is None:
+    print(f"\nERRO: Reinicie o programa.")
+else:
+    tentativas_peso = 4
+    while tentativas_peso > 0:
+        print(f"\nQual o seu gênero?")
+        print(f"\n", " " * 4,"[1] Masculino")
+        print(f" " * 5, "[2] Feminino")
+        
+        try:
+            genero = int(input("\n"))
+        except ValueError:
+            tentativas_peso -= 1
+            if tentativas_peso == 1:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print("\nA última tentativa será possível em 30 segundos.")
+                time.sleep(5)
+                for i in range (30, 0, -1):
+                    print(f"\r {i} segundos.", end = " ", flush = True)
+                    time.sleep(1)
+                os.system('cls' if os.name == 'nt' else 'clear')
+                continue
+            if tentativas_peso > 0:
+                time.sleep(2)
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print(f"\nERRO: Digite apenas [1] ou [2].")
+                print(f"Você tem somente {tentativas_peso} tentativas.")
+                continue 
+            else:
+                print("\nTentativas esgotadas.")
+            break
+        
+        if genero == 1:
+            peso_ideal = (72.7 * altura) - 58
+            print(f"\nConsiderando sua altura de {altura:2.2f} metros,"
+                f" seu peso ideal seguindo os critérios de Lorentz é de {peso_ideal:2.2f} kg.")
+            break
+        elif genero == 2:
+            peso_ideal = (62.1 * altura) - 44.7
+            print(f"\nConsiderando sua altura de {altura:2.2f} metros,"
+                f" seu peso ideal seguindo os critérios de Lorentz é de {peso_ideal:2.2f} kg.")
+            break
+        else:
+            tentativas_peso -= 1
+            if tentativas_peso > 0:
+                print(f"\nDigite apenas números.")
+                print(f"Você tem somente {tentativas_peso} tentativas.")
+                continue 
+            else:
+                print("\nTentativas esgotadas.")
+            break
+
+'''18) Desenvolva um programa que calcule o troco mínimo em cédulas e moedas para uma compra.
+   O usuário informa o valor da compra e o valor pago.'''
+   
+
+
+
 

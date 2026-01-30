@@ -1,0 +1,1730 @@
+================================================================================
+                ESTRUTURAS CONDICIONAIS E LOOPINGS EM PYTHON
+                           NÍVEL INICIANTE
+================================================================================
+
+
+
+================================================================================
+1. INTRODUÇÃO A ESTRUTURAS DE CONTROLE
+================================================================================
+
+1.1 O QUE SÃO ESTRUTURAS DE CONTROLE?
+--------------------------------------------------------------------------------
+Estruturas de controle determinam o fluxo de execução do programa. Elas 
+permitem que o código tome decisões (condicionais) e repita ações (loops).
+
+Sem estruturas de controle:
+linha1()
+linha2()
+linha3()
+# Executa sempre na mesma ordem, linha por linha
+
+Com estruturas de controle:
+if condicao:
+    fazer_algo()  # Executa apenas se condição for verdadeira
+else:
+    fazer_outra_coisa()
+
+1.2 POR QUE USAR ESTRUTURAS DE CONTROLE?
+--------------------------------------------------------------------------------
+Benefícios das estruturas de controle:
+- Permite que o programa tome decisões baseadas em condições
+- Evita repetição de código através de loops
+- Torna o código mais flexível e dinâmico
+- Permite processamento de coleções de dados
+- Essencial para qualquer lógica de programação
+
+1.3 TIPOS DE ESTRUTURAS DE CONTROLE
+--------------------------------------------------------------------------------
+Condicionais: Tomam decisões
+- if: executa código se condição for verdadeira
+- elif: testa condições alternativas
+- else: executa se nenhuma condição anterior for verdadeira
+
+Loops: Repetem ações
+- for: itera sobre sequências (listas, strings, ranges)
+- while: repete enquanto condição for verdadeira
+- Controles: break, continue, pass
+
+
+================================================================================
+2. VALORES BOOLEANOS E OPERADORES
+================================================================================
+
+2.1 VALORES BOOLEANOS
+--------------------------------------------------------------------------------
+Em Python, existem apenas dois valores booleanos: True e False.
+
+Valores booleanos diretos:
+verdadeiro = True
+falso = False
+
+Conversão para booleano:
+bool(1)        # True
+bool(0)        # False
+bool("texto")  # True
+bool("")       # False
+bool([1, 2])   # True
+bool([])       # False
+
+Valores considerados False (Falsy):
+- False, None
+- 0, 0.0, 0j
+- "", [], (), {}, set()
+- Objetos com __bool__() ou __len__() que retornam False ou 0
+
+Valores considerados True (Truthy):
+- Tudo que não é Falsy!
+
+2.2 OPERADORES DE COMPARAÇÃO
+--------------------------------------------------------------------------------
+Comparam valores e retornam True ou False.
+
+Operadores:
+==    Igual a
+!=    Diferente de
+>     Maior que
+<     Menor que
+>=    Maior ou igual a
+<=    Menor ou igual a
+
+Exemplos:
+5 == 5        # True
+5 != 3        # True
+10 > 5        # True
+3 < 2         # False
+7 >= 7        # True
+4 <= 3        # False
+
+Comparação de strings:
+"abc" == "abc"     # True
+"abc" < "def"      # True (ordem alfabética)
+"Python" != "Java" # True
+
+Comparando tipos:
+5 == "5"      # False (int vs string)
+5 == 5.0      # True (int vs float, valores iguais)
+
+2.3 OPERADORES LÓGICOS
+--------------------------------------------------------------------------------
+Combinam expressões booleanas.
+
+Operadores:
+and    E lógico (ambos devem ser True)
+or     OU lógico (pelo menos um deve ser True)
+not    NÃO lógico (inverte o valor)
+
+Tabela verdade do AND:
+True and True    # True
+True and False   # False
+False and True   # False
+False and False  # False
+
+Tabela verdade do OR:
+True or True     # True
+True or False    # True
+False or True    # True
+False or False   # False
+
+Operador NOT:
+not True         # False
+not False        # True
+
+Exemplos práticos:
+idade = 25
+tem_carteira = True
+
+# AND: todas condições devem ser verdadeiras
+if idade >= 18 and tem_carteira:
+    print("Pode dirigir")
+
+# OR: pelo menos uma condição deve ser verdadeira
+dia = "sábado"
+if dia == "sábado" or dia == "domingo":
+    print("É fim de semana!")
+
+# NOT: inverte a condição
+chovendo = False
+if not chovendo:
+    print("Pode sair sem guarda-chuva")
+
+2.4 OPERADORES DE IDENTIDADE E PERTENCIMENTO
+--------------------------------------------------------------------------------
+Verificam identidade de objetos e pertencimento a coleções.
+
+Operadores de identidade:
+is      Verifica se são o mesmo objeto
+is not  Verifica se não são o mesmo objeto
+
+Exemplo:
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+a == b        # True (valores iguais)
+a is b        # False (objetos diferentes)
+a is c        # True (mesmo objeto)
+
+Operadores de pertencimento:
+in      Verifica se está contido
+not in  Verifica se não está contido
+
+Exemplos:
+"a" in "banana"           # True
+3 in [1, 2, 3, 4]        # True
+"x" not in "python"      # True
+"chave" in {"chave": 1}  # True (verifica chaves em dicionários)
+
+
+================================================================================
+3. ESTRUTURAS CONDICIONAIS (IF, ELIF, ELSE)
+================================================================================
+
+3.1 IF SIMPLES
+--------------------------------------------------------------------------------
+Executa código apenas se a condição for verdadeira.
+
+Sintaxe:
+if condicao:
+    # Código executado se condição for True
+    instrucoes()
+
+Exemplo básico:
+idade = 20
+if idade >= 18:
+    print("Você é maior de idade")
+
+Múltiplas linhas no bloco:
+temperatura = 35
+if temperatura > 30:
+    print("Está muito quente!")
+    print("Beba bastante água")
+    print("Evite o sol")
+
+IMPORTANTE: A indentação (espaços) define o bloco!
+if True:
+    print("Dentro do if")  # 4 espaços
+print("Fora do if")        # Sem indentação
+
+3.2 IF-ELSE
+--------------------------------------------------------------------------------
+Executa um bloco se condição for True, outro se for False.
+
+Sintaxe:
+if condicao:
+    # Executado se True
+    fazer_algo()
+else:
+    # Executado se False
+    fazer_outra_coisa()
+
+Exemplo:
+nota = 7.5
+if nota >= 7:
+    print("Aprovado!")
+else:
+    print("Reprovado!")
+
+Exemplo prático:
+numero = int(input("Digite um número: "))
+if numero % 2 == 0:
+    print(f"{numero} é par")
+else:
+    print(f"{numero} é ímpar")
+
+3.3 IF-ELIF-ELSE
+--------------------------------------------------------------------------------
+Testa múltiplas condições em sequência.
+
+Sintaxe:
+if condicao1:
+    # Executado se condicao1 for True
+    codigo1()
+elif condicao2:
+    # Executado se condicao1 for False e condicao2 for True
+    codigo2()
+elif condicao3:
+    # Executado se anteriores forem False e condicao3 for True
+    codigo3()
+else:
+    # Executado se todas as condições forem False
+    codigo_padrao()
+
+Exemplo de classificação:
+nota = 8.5
+
+if nota >= 9:
+    print("Conceito A - Excelente!")
+elif nota >= 7:
+    print("Conceito B - Bom!")
+elif nota >= 5:
+    print("Conceito C - Regular")
+else:
+    print("Conceito D - Insuficiente")
+
+Exemplo com faixas etárias:
+idade = 15
+
+if idade < 12:
+    print("Criança")
+elif idade < 18:
+    print("Adolescente")
+elif idade < 60:
+    print("Adulto")
+else:
+    print("Idoso")
+
+IMPORTANTE: Apenas o PRIMEIRO bloco verdadeiro é executado!
+numero = 10
+if numero > 5:
+    print("Maior que 5")     # Executado
+elif numero > 3:
+    print("Maior que 3")     # Não executado (mesmo sendo verdadeiro)
+else:
+    print("Menor ou igual a 5")
+
+3.4 IFS ANINHADOS
+--------------------------------------------------------------------------------
+Você pode colocar if dentro de outro if.
+
+Sintaxe:
+if condicao1:
+    if condicao2:
+        # Executado se ambas forem True
+        codigo()
+
+Exemplo:
+idade = 20
+tem_habilitacao = True
+
+if idade >= 18:
+    if tem_habilitacao:
+        print("Pode dirigir")
+    else:
+        print("Maior de idade, mas precisa de habilitação")
+else:
+    print("Menor de idade, não pode dirigir")
+
+Melhor abordagem (usando 'and'):
+if idade >= 18 and tem_habilitacao:
+    print("Pode dirigir")
+
+Exemplo com validação de login:
+usuario = "admin"
+senha = "123456"
+
+if usuario == "admin":
+    if senha == "123456":
+        print("Login bem-sucedido!")
+    else:
+        print("Senha incorreta")
+else:
+    print("Usuário não encontrado")
+
+3.5 OPERADOR TERNÁRIO (CONDICIONAL EM UMA LINHA)
+--------------------------------------------------------------------------------
+Forma compacta de if-else para atribuições simples.
+
+Sintaxe:
+valor = resultado_se_true if condicao else resultado_se_false
+
+Exemplos:
+idade = 20
+status = "maior" if idade >= 18 else "menor"
+print(status)  # "maior"
+
+numero = 7
+tipo = "par" if numero % 2 == 0 else "ímpar"
+print(tipo)  # "ímpar"
+
+Comparação:
+# Forma tradicional:
+if nota >= 7:
+    resultado = "Aprovado"
+else:
+    resultado = "Reprovado"
+
+# Forma ternária:
+resultado = "Aprovado" if nota >= 7 else "Reprovado"
+
+Aninhamento (evite, pode ficar confuso):
+nota = 8.5
+conceito = "A" if nota >= 9 else "B" if nota >= 7 else "C"
+
+
+================================================================================
+4. ESTRUTURA DE REPETIÇÃO FOR
+================================================================================
+
+4.1 FOR BÁSICO
+--------------------------------------------------------------------------------
+Itera sobre sequências (listas, tuplas, strings, ranges).
+
+Sintaxe:
+for variavel in sequencia:
+    # Código executado para cada item
+    processar(variavel)
+
+Iterando sobre lista:
+frutas = ["maçã", "banana", "laranja"]
+for fruta in frutas:
+    print(fruta)
+# Saída:
+# maçã
+# banana
+# laranja
+
+Iterando sobre string:
+for letra in "Python":
+    print(letra)
+# Saída: P y t h o n (uma letra por linha)
+
+Iterando sobre tupla:
+coordenadas = (10, 20, 30)
+for valor in coordenadas:
+    print(f"Valor: {valor}")
+
+4.2 RANGE()
+--------------------------------------------------------------------------------
+Gera sequências numéricas para loops.
+
+Sintaxes de range:
+range(parada)                # 0 até parada-1
+range(inicio, parada)        # inicio até parada-1
+range(inicio, parada, passo) # inicio até parada-1, com incremento
+
+Exemplos básicos:
+# range(5) gera: 0, 1, 2, 3, 4
+for i in range(5):
+    print(i)
+
+# range(2, 6) gera: 2, 3, 4, 5
+for i in range(2, 6):
+    print(i)
+
+# range(0, 10, 2) gera: 0, 2, 4, 6, 8
+for i in range(0, 10, 2):
+    print(i)
+
+# range decrescente
+for i in range(10, 0, -1):
+    print(i)  # 10, 9, 8, ..., 1
+
+Exemplos práticos:
+# Tabuada
+numero = 5
+for i in range(1, 11):
+    print(f"{numero} x {i} = {numero * i}")
+
+# Contagem regressiva
+for i in range(10, 0, -1):
+    print(i)
+print("Feliz Ano Novo!")
+
+4.3 ENUMERATE()
+--------------------------------------------------------------------------------
+Retorna índice e valor ao iterar.
+
+Sintaxe:
+for indice, valor in enumerate(sequencia):
+    processar(indice, valor)
+
+Exemplo básico:
+frutas = ["maçã", "banana", "laranja"]
+for i, fruta in enumerate(frutas):
+    print(f"{i}: {fruta}")
+# Saída:
+# 0: maçã
+# 1: banana
+# 2: laranja
+
+Iniciando índice em 1:
+for i, fruta in enumerate(frutas, start=1):
+    print(f"{i}. {fruta}")
+# Saída:
+# 1. maçã
+# 2. banana
+# 3. laranja
+
+Uso prático:
+alunos = ["Ana", "Bruno", "Carlos"]
+for posicao, nome in enumerate(alunos, 1):
+    print(f"{posicao}º lugar: {nome}")
+
+4.4 ITERANDO SOBRE DICIONÁRIOS
+--------------------------------------------------------------------------------
+Várias formas de iterar sobre dicionários.
+
+Dicionário de exemplo:
+pessoa = {"nome": "João", "idade": 30, "cidade": "São Paulo"}
+
+Iterando sobre chaves (padrão):
+for chave in pessoa:
+    print(chave)
+# Saída: nome, idade, cidade
+
+Iterando sobre chaves (explícito):
+for chave in pessoa.keys():
+    print(chave, pessoa[chave])
+
+Iterando sobre valores:
+for valor in pessoa.values():
+    print(valor)
+# Saída: João, 30, São Paulo
+
+Iterando sobre pares chave-valor:
+for chave, valor in pessoa.items():
+    print(f"{chave}: {valor}")
+# Saída:
+# nome: João
+# idade: 30
+# cidade: São Paulo
+
+Exemplo prático:
+notas = {"Ana": 9.5, "Bruno": 7.0, "Carlos": 8.5}
+for aluno, nota in notas.items():
+    if nota >= 7:
+        print(f"{aluno}: Aprovado ({nota})")
+    else:
+        print(f"{aluno}: Reprovado ({nota})")
+
+4.5 ZIP() E ITERAÇÃO PARALELA
+--------------------------------------------------------------------------------
+Itera sobre múltiplas sequências simultaneamente.
+
+Sintaxe:
+for item1, item2 in zip(lista1, lista2):
+    processar(item1, item2)
+
+Exemplo básico:
+nomes = ["Ana", "Bruno", "Carlos"]
+idades = [25, 30, 22]
+
+for nome, idade in zip(nomes, idades):
+    print(f"{nome} tem {idade} anos")
+# Saída:
+# Ana tem 25 anos
+# Bruno tem 30 anos
+# Carlos tem 22 anos
+
+Três ou mais listas:
+nomes = ["Ana", "Bruno"]
+idades = [25, 30]
+cidades = ["SP", "RJ"]
+
+for nome, idade, cidade in zip(nomes, idades, cidades):
+    print(f"{nome}, {idade} anos, mora em {cidade}")
+
+IMPORTANTE: zip para quando a menor lista acaba!
+lista1 = [1, 2, 3]
+lista2 = [10, 20]
+for a, b in zip(lista1, lista2):
+    print(a, b)
+# Saída:
+# 1 10
+# 2 20
+# (o 3 é ignorado)
+
+4.6 LIST COMPREHENSION
+--------------------------------------------------------------------------------
+Forma compacta de criar listas usando for.
+
+Sintaxe básica:
+nova_lista = [expressao for item in sequencia]
+
+Exemplo básico:
+# Forma tradicional:
+quadrados = []
+for x in range(5):
+    quadrados.append(x ** 2)
+# quadrados = [0, 1, 4, 9, 16]
+
+# List comprehension:
+quadrados = [x ** 2 for x in range(5)]
+
+Com condição (filtro):
+# Apenas números pares
+pares = [x for x in range(10) if x % 2 == 0]
+# pares = [0, 2, 4, 6, 8]
+
+# Apenas nomes com mais de 3 letras
+nomes = ["Ana", "Bruno", "Carlos", "Di"]
+nomes_longos = [nome for nome in nomes if len(nome) > 3]
+# nomes_longos = ["Bruno", "Carlos"]
+
+Transformações:
+# Converter para maiúsculas
+frutas = ["maçã", "banana", "uva"]
+frutas_upper = [fruta.upper() for fruta in frutas]
+# ["MAÇÃ", "BANANA", "UVA"]
+
+# Dobro de cada número
+numeros = [1, 2, 3, 4]
+dobros = [n * 2 for n in numeros]
+# [2, 4, 6, 8]
+
+Com if-else:
+numeros = [1, 2, 3, 4, 5]
+resultado = ["par" if n % 2 == 0 else "ímpar" for n in numeros]
+# ["ímpar", "par", "ímpar", "par", "ímpar"]
+
+Aninhadas (listas 2D):
+matriz = [[j for j in range(3)] for i in range(3)]
+# [[0, 1, 2], [0, 1, 2], [0, 1, 2]]
+
+
+================================================================================
+5. ESTRUTURA DE REPETIÇÃO WHILE
+================================================================================
+
+5.1 WHILE BÁSICO
+--------------------------------------------------------------------------------
+Repete enquanto a condição for verdadeira.
+
+Sintaxe:
+while condicao:
+    # Código executado enquanto condição for True
+    instrucoes()
+
+Exemplo básico:
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1
+# Saída: 0, 1, 2, 3, 4
+
+CUIDADO: Loop infinito!
+# while True:
+#     print("Isso nunca para!")  # Não execute isso!
+
+Exemplo prático - validação:
+senha = ""
+while senha != "python":
+    senha = input("Digite a senha: ")
+print("Acesso liberado!")
+
+5.2 WHILE COM CONTADOR
+--------------------------------------------------------------------------------
+Similar ao for, mas com controle manual do contador.
+
+Exemplo:
+i = 1
+while i <= 10:
+    print(i)
+    i += 1
+
+Contagem regressiva:
+contador = 10
+while contador > 0:
+    print(contador)
+    contador -= 1
+print("Acabou!")
+
+5.3 WHILE TRUE COM BREAK
+--------------------------------------------------------------------------------
+Loop infinito controlado por break.
+
+Sintaxe comum:
+while True:
+    # Código
+    if condicao_de_saida:
+        break
+
+Exemplo - menu:
+while True:
+    print("\n1. Opção 1")
+    print("2. Opção 2")
+    print("3. Sair")
+    
+    escolha = input("Escolha: ")
+    
+    if escolha == "1":
+        print("Você escolheu 1")
+    elif escolha == "2":
+        print("Você escolheu 2")
+    elif escolha == "3":
+        print("Saindo...")
+        break
+    else:
+        print("Opção inválida!")
+
+Exemplo - jogo de adivinhação:
+import random
+
+numero_secreto = random.randint(1, 100)
+tentativas = 0
+
+while True:
+    palpite = int(input("Adivinhe o número (1-100): "))
+    tentativas += 1
+    
+    if palpite == numero_secreto:
+        print(f"Acertou em {tentativas} tentativas!")
+        break
+    elif palpite < numero_secreto:
+        print("Muito baixo!")
+    else:
+        print("Muito alto!")
+
+5.4 WHILE COM ELSE
+--------------------------------------------------------------------------------
+O bloco else é executado quando o loop termina normalmente (sem break).
+
+Sintaxe:
+while condicao:
+    codigo()
+else:
+    # Executado quando condição se torna False
+    codigo_finalizacao()
+
+Exemplo:
+contador = 0
+while contador < 3:
+    print(f"Contagem: {contador}")
+    contador += 1
+else:
+    print("Loop concluído normalmente!")
+
+# Saída:
+# Contagem: 0
+# Contagem: 1
+# Contagem: 2
+# Loop concluído normalmente!
+
+Exemplo com break (else NÃO executa):
+senha_correta = "python"
+tentativas = 0
+max_tentativas = 3
+
+while tentativas < max_tentativas:
+    senha = input("Senha: ")
+    if senha == senha_correta:
+        print("Acesso permitido!")
+        break
+    tentativas += 1
+else:
+    # Só executa se não houver break
+    print("Número máximo de tentativas excedido!")
+
+5.5 FOR VS WHILE
+--------------------------------------------------------------------------------
+Quando usar cada um?
+
+Use FOR quando:
+- Souber o número de iterações
+- Iterar sobre coleções (listas, ranges)
+- Processar cada elemento de uma sequência
+
+Exemplos:
+for i in range(10):
+    print(i)
+
+for nome in ["Ana", "Bruno", "Carlos"]:
+    print(nome)
+
+Use WHILE quando:
+- Não souber quantas iterações serão necessárias
+- Continuar até uma condição específica
+- Criar loops infinitos controlados
+
+Exemplos:
+while not arquivo_processado:
+    processar_linha()
+
+while usuario_logado:
+    executar_acao()
+
+Comparação - mesma tarefa:
+# Com FOR:
+for i in range(5):
+    print(i)
+
+# Com WHILE:
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+
+
+================================================================================
+6. CONTROLE DE LOOPS (BREAK, CONTINUE, PASS)
+================================================================================
+
+6.1 BREAK
+--------------------------------------------------------------------------------
+Interrompe o loop imediatamente.
+
+Sintaxe:
+for item in sequencia:
+    if condicao:
+        break  # Sai do loop
+    processar(item)
+
+Exemplo em for:
+for numero in range(10):
+    if numero == 5:
+        break
+    print(numero)
+# Saída: 0, 1, 2, 3, 4 (para no 5)
+
+Exemplo em while:
+contador = 0
+while True:
+    print(contador)
+    contador += 1
+    if contador >= 5:
+        break
+# Saída: 0, 1, 2, 3, 4
+
+Uso prático - busca:
+numeros = [10, 20, 30, 40, 50]
+procurar = 30
+
+for i, num in enumerate(numeros):
+    if num == procurar:
+        print(f"Encontrado na posição {i}")
+        break
+else:
+    print("Não encontrado")
+
+6.2 CONTINUE
+--------------------------------------------------------------------------------
+Pula para a próxima iteração do loop.
+
+Sintaxe:
+for item in sequencia:
+    if condicao:
+        continue  # Pula para próxima iteração
+    processar(item)
+
+Exemplo - pular números pares:
+for numero in range(10):
+    if numero % 2 == 0:
+        continue  # Pula pares
+    print(numero)
+# Saída: 1, 3, 5, 7, 9 (apenas ímpares)
+
+Exemplo prático - processar apenas válidos:
+numeros = [1, -2, 3, -4, 5, -6]
+soma = 0
+
+for num in numeros:
+    if num < 0:
+        continue  # Pula negativos
+    soma += num
+
+print(f"Soma dos positivos: {soma}")  # 9
+
+Filtrando entradas:
+nomes = ["Ana", "", "Bruno", "", "Carlos"]
+for nome in nomes:
+    if not nome:  # Se vazio
+        continue
+    print(f"Olá, {nome}!")
+
+6.3 PASS
+--------------------------------------------------------------------------------
+Não faz nada (placeholder).
+
+Sintaxe:
+if condicao:
+    pass  # Fazer algo aqui depois
+
+Quando usar:
+- Estrutura que ainda será implementada
+- Evitar erro de sintaxe em blocos vazios
+- Placeholder em desenvolvimento
+
+Exemplo em if:
+idade = 17
+if idade >= 18:
+    pass  # TODO: implementar verificação de maioridade
+else:
+    print("Menor de idade")
+
+Exemplo em loop:
+for i in range(10):
+    if i % 2 == 0:
+        pass  # TODO: processar pares
+    else:
+        print(f"Ímpar: {i}")
+
+Classe vazia (comum em desenvolvimento):
+class MinhaClasse:
+    pass  # Implementar depois
+
+Função vazia:
+def minha_funcao():
+    pass  # Implementar depois
+
+6.4 COMBINANDO BREAK E CONTINUE
+--------------------------------------------------------------------------------
+Usando break e continue juntos em loops complexos.
+
+Exemplo - processar até encontrar condição:
+numeros = [1, 2, 3, -1, 4, 5]
+
+for num in numeros:
+    if num < 0:
+        print("Número negativo encontrado, parando")
+        break
+    if num % 2 == 0:
+        continue  # Pula pares
+    print(f"Ímpar positivo: {num}")
+
+# Saída:
+# Ímpar positivo: 1
+# Ímpar positivo: 3
+# Número negativo encontrado, parando
+
+Validação com continue e processamento:
+dados = ["123", "abc", "456", "def", "789"]
+numeros_validos = []
+
+for item in dados:
+    if not item.isdigit():
+        continue  # Pula não-numéricos
+    
+    numero = int(item)
+    if numero > 500:
+        break  # Para se encontrar número muito alto
+    
+    numeros_validos.append(numero)
+
+print(numeros_validos)  # [123, 456]
+
+6.5 ELSE EM LOOPS
+--------------------------------------------------------------------------------
+Bloco else executa quando loop termina normalmente (sem break).
+
+Sintaxe:
+for item in sequencia:
+    if condicao:
+        break
+else:
+    # Executado se não houver break
+    codigo()
+
+Exemplo - verificar se número é primo:
+numero = 17
+for i in range(2, numero):
+    if numero % i == 0:
+        print(f"{numero} não é primo")
+        break
+else:
+    print(f"{numero} é primo")
+
+Exemplo - busca com resultado:
+nomes = ["Ana", "Bruno", "Carlos"]
+procurar = "Diana"
+
+for nome in nomes:
+    if nome == procurar:
+        print(f"{procurar} encontrado!")
+        break
+else:
+    print(f"{procurar} não encontrado na lista")
+
+
+================================================================================
+7. LOOPS ANINHADOS
+================================================================================
+
+7.1 FOR ANINHADO
+--------------------------------------------------------------------------------
+Loop dentro de outro loop.
+
+Sintaxe:
+for item1 in sequencia1:
+    for item2 in sequencia2:
+        # Executado para cada combinação
+        processar(item1, item2)
+
+Exemplo - tabela de multiplicação:
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i * j}")
+    print()  # Linha em branco
+
+# Saída:
+# 1 x 1 = 1
+# 1 x 2 = 2
+# 1 x 3 = 3
+#
+# 2 x 1 = 2
+# 2 x 2 = 4
+# ...
+
+Matriz (lista 2D):
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for linha in matriz:
+    for elemento in linha:
+        print(elemento, end=" ")
+    print()  # Nova linha
+
+# Saída:
+# 1 2 3
+# 4 5 6
+# 7 8 9
+
+Exemplo - combinações:
+cores = ["vermelho", "azul"]
+tamanhos = ["P", "M", "G"]
+
+for cor in cores:
+    for tamanho in tamanhos:
+        print(f"{cor} - {tamanho}")
+
+# Saída:
+# vermelho - P
+# vermelho - M
+# vermelho - G
+# azul - P
+# azul - M
+# azul - G
+
+7.2 WHILE ANINHADO
+--------------------------------------------------------------------------------
+While dentro de outro while.
+
+Exemplo - menu com submenus:
+while True:
+    print("\nMenu Principal")
+    print("1. Submenu")
+    print("2. Sair")
+    
+    opcao = input("Escolha: ")
+    
+    if opcao == "1":
+        while True:
+            print("\nSubmenu")
+            print("1. Ação A")
+            print("2. Voltar")
+            
+            sub_opcao = input("Escolha: ")
+            
+            if sub_opcao == "1":
+                print("Executando ação A")
+            elif sub_opcao == "2":
+                break  # Sai do submenu
+    
+    elif opcao == "2":
+        break  # Sai do menu principal
+
+7.3 BREAK EM LOOPS ANINHADOS
+--------------------------------------------------------------------------------
+Break só sai do loop mais interno.
+
+Exemplo:
+for i in range(3):
+    print(f"Loop externo: {i}")
+    for j in range(3):
+        if j == 1:
+            break  # Só sai do loop interno
+        print(f"  Loop interno: {j}")
+    print("Fim da iteração externa")
+
+# Saída:
+# Loop externo: 0
+#   Loop interno: 0
+# Fim da iteração externa
+# Loop externo: 1
+#   Loop interno: 0
+# Fim da iteração externa
+# ...
+
+Para sair de ambos os loops, use flag:
+encontrado = False
+for i in range(3):
+    for j in range(3):
+        if alguma_condicao:
+            encontrado = True
+            break
+    if encontrado:
+        break
+
+7.4 PADRÕES COMUNS COM LOOPS ANINHADOS
+--------------------------------------------------------------------------------
+Exemplos práticos de uso.
+
+Busca em matriz:
+matriz = [[1, 2], [3, 4], [5, 6]]
+procurar = 4
+
+for i, linha in enumerate(matriz):
+    for j, valor in enumerate(linha):
+        if valor == procurar:
+            print(f"Encontrado na posição [{i}][{j}]")
+
+Criar padrões:
+# Triângulo
+for i in range(1, 6):
+    for j in range(i):
+        print("*", end="")
+    print()
+
+# Saída:
+# *
+# **
+# ***
+# ****
+# *****
+
+Tabuleiro:
+tamanho = 8
+for i in range(tamanho):
+    for j in range(tamanho):
+        if (i + j) % 2 == 0:
+            print("⬜", end="")
+        else:
+            print("⬛", end="")
+    print()
+
+
+================================================================================
+8. PADRÕES E BOAS PRÁTICAS
+================================================================================
+
+8.1 VALIDAÇÃO DE ENTRADA
+--------------------------------------------------------------------------------
+Padrão robusto para entrada do usuário.
+
+Entrada numérica:
+def obter_numero():
+    while True:
+        try:
+            entrada = input("Digite um número: ")
+            numero = float(entrada)
+            return numero
+        except ValueError:
+            print("Entrada inválida! Digite um número.")
+
+Entrada com validação:
+def obter_idade():
+    while True:
+        idade = obter_numero()
+        if 0 <= idade <= 150:
+            return int(idade)
+        print("Idade deve estar entre 0 e 150!")
+
+Entrada de opções:
+def obter_opcao(opcoes_validas):
+    while True:
+        opcao = input(f"Escolha {opcoes_validas}: ")
+        if opcao in opcoes_validas:
+            return opcao
+        print("Opção inválida!")
+
+# Uso:
+opcao = obter_opcao(['s', 'n'])
+
+8.2 PROCESSAMENTO DE LISTAS
+--------------------------------------------------------------------------------
+Padrões comuns para trabalhar com listas.
+
+Soma de elementos:
+numeros = [1, 2, 3, 4, 5]
+soma = 0
+for num in numeros:
+    soma += num
+# Ou simplesmente: soma = sum(numeros)
+
+Encontrar máximo/mínimo:
+numeros = [45, 12, 78, 23, 56]
+maximo = numeros[0]
+for num in numeros:
+    if num > maximo:
+        maximo = num
+# Ou: maximo = max(numeros)
+
+Filtrar elementos:
+numeros = [1, 2, 3, 4, 5, 6]
+pares = []
+for num in numeros:
+    if num % 2 == 0:
+        pares.append(num)
+# Ou: pares = [n for n in numeros if n % 2 == 0]
+
+Contar ocorrências:
+frutas = ["maçã", "banana", "maçã", "laranja", "maçã"]
+contador = 0
+for fruta in frutas:
+    if fruta == "maçã":
+        contador += 1
+# Ou: contador = frutas.count("maçã")
+
+8.3 ACUMULADORES E CONTADORES
+--------------------------------------------------------------------------------
+Padrões para acumular valores durante loops.
+
+Contador simples:
+contador = 0
+for item in lista:
+    if condicao(item):
+        contador += 1
+
+Acumulador de soma:
+total = 0
+for numero in numeros:
+    total += numero
+
+Acumulador de produto:
+produto = 1
+for numero in numeros:
+    produto *= numero
+
+Construção de string:
+resultado = ""
+for palavra in palavras:
+    resultado += palavra + " "
+
+# Melhor:
+resultado = " ".join(palavras)
+
+Múltiplos acumuladores:
+positivos = 0
+negativos = 0
+zeros = 0
+
+for num in numeros:
+    if num > 0:
+        positivos += 1
+    elif num < 0:
+        negativos += 1
+    else:
+        zeros += 1
+
+8.4 EARLY RETURN
+--------------------------------------------------------------------------------
+Retornar cedo de funções para evitar aninhamento.
+
+Sem early return (aninhado):
+def processar_usuario(usuario):
+    if usuario is not None:
+        if usuario.ativo:
+            if usuario.idade >= 18:
+                return f"Processando {usuario.nome}"
+            else:
+                return "Menor de idade"
+        else:
+            return "Usuário inativo"
+    else:
+        return "Usuário não encontrado"
+
+Com early return (mais limpo):
+def processar_usuario(usuario):
+    if usuario is None:
+        return "Usuário não encontrado"
+    
+    if not usuario.ativo:
+        return "Usuário inativo"
+    
+    if usuario.idade < 18:
+        return "Menor de idade"
+    
+    return f"Processando {usuario.nome}"
+
+8.5 ENUMERATE PARA MODIFICAÇÃO
+--------------------------------------------------------------------------------
+Use enumerate quando precisar do índice.
+
+Sem enumerate (não recomendado):
+frutas = ["maçã", "banana", "laranja"]
+for i in range(len(frutas)):
+    frutas[i] = frutas[i].upper()
+
+Com enumerate (melhor):
+for i, fruta in enumerate(frutas):
+    frutas[i] = fruta.upper()
+
+# Melhor ainda (list comprehension):
+frutas = [fruta.upper() for fruta in frutas]
+
+8.6 EVITANDO LOOPS DESNECESSÁRIOS
+--------------------------------------------------------------------------------
+Use métodos built-in quando possível.
+
+Verificar se existe:
+# Lento:
+encontrado = False
+for item in lista:
+    if item == procurar:
+        encontrado = True
+        break
+
+# Rápido:
+encontrado = procurar in lista
+
+Contar:
+# Manual:
+contador = 0
+for item in lista:
+    if item == valor:
+        contador += 1
+
+# Built-in:
+contador = lista.count(valor)
+
+Somar:
+# Manual:
+total = 0
+for num in numeros:
+    total += num
+
+# Built-in:
+total = sum(numeros)
+
+8.7 GUARD CLAUSES
+--------------------------------------------------------------------------------
+Validações no início da função.
+
+Sem guard clauses:
+def processar_pedido(pedido):
+    if pedido.valido:
+        if pedido.pago:
+            if pedido.em_estoque:
+                # Processar
+                return processar(pedido)
+
+Com guard clauses:
+def processar_pedido(pedido):
+    if not pedido.valido:
+        return "Pedido inválido"
+    
+    if not pedido.pago:
+        return "Pagamento pendente"
+    
+    if not pedido.em_estoque:
+        return "Produto fora de estoque"
+    
+    return processar(pedido)
+
+
+================================================================================
+9. EXEMPLOS PRÁTICOS COMPLETOS
+================================================================================
+
+9.1 CALCULADORA SIMPLES
+--------------------------------------------------------------------------------
+while True:
+    print("\n=== CALCULADORA ===")
+    print("1. Somar")
+    print("2. Subtrair")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Sair")
+    
+    opcao = input("\nEscolha uma opção: ")
+    
+    if opcao == "5":
+        print("Saindo...")
+        break
+    
+    if opcao not in ["1", "2", "3", "4"]:
+        print("Opção inválida!")
+        continue
+    
+    try:
+        num1 = float(input("Primeiro número: "))
+        num2 = float(input("Segundo número: "))
+        
+        if opcao == "1":
+            resultado = num1 + num2
+            print(f"Resultado: {resultado}")
+        elif opcao == "2":
+            resultado = num1 - num2
+            print(f"Resultado: {resultado}")
+        elif opcao == "3":
+            resultado = num1 * num2
+            print(f"Resultado: {resultado}")
+        elif opcao == "4":
+            if num2 == 0:
+                print("Erro: divisão por zero!")
+            else:
+                resultado = num1 / num2
+                print(f"Resultado: {resultado}")
+    
+    except ValueError:
+        print("Erro: entrada inválida!")
+
+9.2 JOGO DE ADIVINHAÇÃO
+--------------------------------------------------------------------------------
+import random
+
+def jogo_adivinhacao():
+    print("=== JOGO DE ADIVINHAÇÃO ===")
+    print("Estou pensando em um número entre 1 e 100")
+    
+    numero_secreto = random.randint(1, 100)
+    tentativas = 0
+    max_tentativas = 7
+    
+    while tentativas < max_tentativas:
+        tentativas_restantes = max_tentativas - tentativas
+        print(f"\nTentativas restantes: {tentativas_restantes}")
+        
+        try:
+            palpite = int(input("Seu palpite: "))
+            
+            if palpite < 1 or palpite > 100:
+                print("Por favor, digite um número entre 1 e 100!")
+                continue
+            
+            tentativas += 1
+            
+            if palpite == numero_secreto:
+                print(f"\n🎉 Parabéns! Você acertou em {tentativas} tentativas!")
+                break
+            elif palpite < numero_secreto:
+                print("📈 Muito baixo!")
+            else:
+                print("📉 Muito alto!")
+        
+        except ValueError:
+            print("Por favor, digite um número válido!")
+    
+    else:
+        print(f"\n😞 Suas tentativas acabaram!")
+        print(f"O número era {numero_secreto}")
+
+jogo_adivinhacao()
+
+9.3 LISTA DE TAREFAS
+--------------------------------------------------------------------------------
+def lista_tarefas():
+    tarefas = []
+    
+    while True:
+        print("\n=== LISTA DE TAREFAS ===")
+        print("1. Adicionar tarefa")
+        print("2. Listar tarefas")
+        print("3. Marcar como concluída")
+        print("4. Remover tarefa")
+        print("5. Sair")
+        
+        opcao = input("\nEscolha: ")
+        
+        if opcao == "1":
+            tarefa = input("Nova tarefa: ")
+            if tarefa:
+                tarefas.append({"texto": tarefa, "concluida": False})
+                print("✅ Tarefa adicionada!")
+            else:
+                print("Tarefa não pode ser vazia!")
+        
+        elif opcao == "2":
+            if not tarefas:
+                print("Nenhuma tarefa cadastrada!")
+            else:
+                print("\nSuas tarefas:")
+                for i, tarefa in enumerate(tarefas, 1):
+                    status = "✓" if tarefa["concluida"] else " "
+                    print(f"{i}. [{status}] {tarefa['texto']}")
+        
+        elif opcao == "3":
+            if not tarefas:
+                print("Nenhuma tarefa para marcar!")
+            else:
+                try:
+                    num = int(input("Número da tarefa: "))
+                    if 1 <= num <= len(tarefas):
+                        tarefas[num - 1]["concluida"] = True
+                        print("✅ Tarefa marcada como concluída!")
+                    else:
+                        print("Número inválido!")
+                except ValueError:
+                    print("Digite um número válido!")
+        
+        elif opcao == "4":
+            if not tarefas:
+                print("Nenhuma tarefa para remover!")
+            else:
+                try:
+                    num = int(input("Número da tarefa: "))
+                    if 1 <= num <= len(tarefas):
+                        removida = tarefas.pop(num - 1)
+                        print(f"🗑️ Removida: {removida['texto']}")
+                    else:
+                        print("Número inválido!")
+                except ValueError:
+                    print("Digite um número válido!")
+        
+        elif opcao == "5":
+            print("Até logo!")
+            break
+        
+        else:
+            print("Opção inválida!")
+
+9.4 ANÁLISE DE DADOS
+--------------------------------------------------------------------------------
+def analisar_notas():
+    print("=== ANÁLISE DE NOTAS ===")
+    print("Digite as notas (ou 'fim' para terminar)")
+    
+    notas = []
+    
+    while True:
+        entrada = input("Nota: ")
+        
+        if entrada.lower() == "fim":
+            break
+        
+        try:
+            nota = float(entrada)
+            if 0 <= nota <= 10:
+                notas.append(nota)
+            else:
+                print("Nota deve estar entre 0 e 10!")
+        except ValueError:
+            print("Digite um número válido ou 'fim'!")
+    
+    if not notas:
+        print("Nenhuma nota foi inserida!")
+        return
+    
+    # Análise
+    media = sum(notas) / len(notas)
+    maior = max(notas)
+    menor = min(notas)
+    
+    aprovados = 0
+    reprovados = 0
+    for nota in notas:
+        if nota >= 7:
+            aprovados += 1
+        else:
+            reprovados += 1
+    
+    # Resultados
+    print("\n=== RESULTADOS ===")
+    print(f"Total de notas: {len(notas)}")
+    print(f"Média: {media:.2f}")
+    print(f"Maior nota: {maior:.2f}")
+    print(f"Menor nota: {menor:.2f}")
+    print(f"Aprovados (≥7): {aprovados}")
+    print(f"Reprovados (<7): {reprovados}")
+    
+    # Distribuição
+    print("\nDistribuição:")
+    for i in range(0, 11, 2):
+        faixa_inicial = i
+        faixa_final = i + 2
+        quantidade = sum(1 for n in notas if faixa_inicial <= n < faixa_final)
+        if i == 10:
+            quantidade = sum(1 for n in notas if n == 10)
+        barra = "█" * quantidade
+        print(f"{faixa_inicial}-{faixa_final}: {barra} ({quantidade})")
+
+9.5 VALIDADOR DE CPF
+--------------------------------------------------------------------------------
+def validar_cpf(cpf):
+    # Remove pontos e traços
+    cpf = cpf.replace(".", "").replace("-", "")
+    
+    # Verifica se tem 11 dígitos
+    if len(cpf) != 11 or not cpf.isdigit():
+        return False
+    
+    # Verifica se todos os dígitos são iguais
+    if cpf == cpf[0] * 11:
+        return False
+    
+    # Calcula primeiro dígito verificador
+    soma = 0
+    for i in range(9):
+        soma += int(cpf[i]) * (10 - i)
+    
+    digito1 = 11 - (soma % 11)
+    if digito1 > 9:
+        digito1 = 0
+    
+    if int(cpf[9]) != digito1:
+        return False
+    
+    # Calcula segundo dígito verificador
+    soma = 0
+    for i in range(10):
+        soma += int(cpf[i]) * (11 - i)
+    
+    digito2 = 11 - (soma % 11)
+    if digito2 > 9:
+        digito2 = 0
+    
+    if int(cpf[10]) != digito2:
+        return False
+    
+    return True
+
+# Teste
+cpf = input("Digite o CPF: ")
+if validar_cpf(cpf):
+    print("✅ CPF válido!")
+else:
+    print("❌ CPF inválido!")
+
+
+================================================================================
+RESUMO RÁPIDO
+================================================================================
+
+ESTRUTURAS CONDICIONAIS:
+if condicao:
+    codigo()
+elif outra_condicao:
+    codigo()
+else:
+    codigo()
+
+# Ternário
+valor = resultado_if_true if condicao else resultado_if_false
+
+LOOP FOR:
+for item in sequencia:
+    processar(item)
+
+# Range
+for i in range(inicio, fim, passo):
+    codigo()
+
+# Enumerate
+for i, valor in enumerate(lista):
+    codigo()
+
+# Comprehension
+lista = [expressao for item in sequencia if condicao]
+
+LOOP WHILE:
+while condicao:
+    codigo()
+
+# Infinito controlado
+while True:
+    if condicao_saida:
+        break
+
+CONTROLE DE LOOPS:
+break     # Sai do loop
+continue  # Pula para próxima iteração
+pass      # Não faz nada (placeholder)
+
+OPERADORES:
+==, !=, >, <, >=, <=     # Comparação
+and, or, not             # Lógicos
+in, not in              # Pertencimento
+is, is not              # Identidade
+
+CONCEITOS-CHAVE:
+- Indentação define blocos de código
+- Condições retornam True ou False
+- For para iterações conhecidas
+- While para iterações condicionais
+- Break interrompe loops
+- Continue pula iteração
+- Else funciona em loops (executa se não houver break)
+
+BOAS PRÁTICAS:
+✅ Use for para iterar sobre coleções
+✅ Use while quando não souber o número de iterações
+✅ Prefira list comprehension para listas simples
+✅ Use enumerate quando precisar de índices
+✅ Valide entrada do usuário com loops
+✅ Use break para sair de loops infinitos
+✅ Evite loops aninhados profundos
+✅ Use guard clauses para validações
+✅ Prefira métodos built-in (sum, max, min, in)
+
+❌ Evite modificar lista durante iteração
+❌ Evite loops desnecessários
+❌ Não use range(len(lista)) quando não precisar do índice
+❌ Evite aninhamento excessivo de ifs
+❌ Não deixe loops infinitos sem break
+
+DICAS:
+- Teste condições booleanas diretamente (if lista: em vez de if len(lista) > 0:)
+- Use any() e all() para verificar condições em sequências
+- Combine zip() com for para iterar múltiplas listas
+- Use dict comprehension: {k: v for k, v in items}
+- Use set comprehension: {x for x in lista}
+- Lembre-se: em Python, indentação é crucial!
+
+
+================================================================================
+DOCUMENTAÇÃO OFICIAL DO PYTHON - ESTRUTURAS DE CONTROLE
+================================================================================
+
+================================================================================
+PRINCIPAL - ESTRUTURAS DE CONTROLE
+================================================================================
+https://docs.python.org/3/tutorial/controlflow.html
+Tutorial oficial sobre estruturas de controle de fluxo
+
+================================================================================
+DOCUMENTAÇÃO DETALHADA
+================================================================================
+https://docs.python.org/3/reference/compound_stmts.html#the-if-statement
+Referência completa da declaração if
+
+https://docs.python.org/3/reference/compound_stmts.html#the-for-statement
+Referência completa da declaração for
+
+https://docs.python.org/3/reference/compound_stmts.html#the-while-statement
+Referência completa da declaração while
+
+https://docs.python.org/3/reference/simple_stmts.html#break
+Declaração break
+
+https://docs.python.org/3/reference/simple_stmts.html#continue
+Declaração continue
+
+https://docs.python.org/3/reference/simple_stmts.html#pass
+Declaração pass
+
+================================================================================
+FUNÇÕES E ITERADORES
+================================================================================
+https://docs.python.org/3/library/functions.html#range
+Função range()
+
+https://docs.python.org/3/library/functions.html#enumerate
+Função enumerate()
+
+https://docs.python.org/3/library/functions.html#zip
+Função zip()
+
+https://docs.python.org/3/library/stdtypes.html#iterator-types
+Tipos iteradores
+
+================================================================================
+EXPRESSÕES E OPERADORES
+================================================================================
+https://docs.python.org/3/reference/expressions.html#comparisons
+Operadores de comparação
+
+https://docs.python.org/3/reference/expressions.html#boolean-operations
+Operações booleanas
+
+https://docs.python.org/3/reference/expressions.html#membership-test-operations
+Operadores de pertencimento (in, not in)
+
+https://docs.python.org/3/reference/expressions.html#is-not
+Operadores de identidade (is, is not)
+
+================================================================================
+LIST COMPREHENSIONS E EXPRESSÕES GERADORAS
+================================================================================
+https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+List comprehensions
+
+https://docs.python.org/3/reference/expressions.html#displays-for-lists-sets-and-dictionaries
+Displays para listas, sets e dicionários
+
+================================================================================
+				AGRIPPA
+================================================================================

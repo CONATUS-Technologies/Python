@@ -1,0 +1,1932 @@
+================================================================================
+                    ESTRUTURAS DE DADOS EM PYTHON
+                           NÍVEL INICIANTE
+================================================================================
+
+
+
+================================================================================
+1. INTRODUÇÃO A ESTRUTURAS DE DADOS
+================================================================================
+
+1.1 O QUE SÃO ESTRUTURAS DE DADOS?
+--------------------------------------------------------------------------------
+Estruturas de dados são formas de organizar e armazenar dados na memória do
+computador. Elas permitem armazenar múltiplos valores de forma eficiente e
+realizar operações sobre esses dados.
+
+Sem estruturas de dados:
+nome1 = "João"
+nome2 = "Maria"
+nome3 = "Pedro"
+# Difícil gerenciar muitos valores individuais
+
+Com estruturas de dados:
+nomes = ["João", "Maria", "Pedro"]
+# Todos os nomes organizados em uma única estrutura
+
+1.2 POR QUE USAR ESTRUTURAS DE DADOS?
+--------------------------------------------------------------------------------
+Benefícios das estruturas de dados:
+- Armazenar coleções de valores relacionados
+- Organizar dados de forma lógica e eficiente
+- Facilitar manipulação e acesso aos dados
+- Permitir operações em lote sobre múltiplos valores
+- Essencial para qualquer programa real
+
+1.3 PRINCIPAIS ESTRUTURAS DE DADOS EM PYTHON
+--------------------------------------------------------------------------------
+Python oferece 4 estruturas de dados nativas principais:
+
+Lista (list): Coleção ordenada e mutável
+- Sintaxe: [1, 2, 3]
+- Permite duplicatas
+- Elementos podem ser modificados
+- Acessada por índices
+
+Tupla (tuple): Coleção ordenada e imutável
+- Sintaxe: (1, 2, 3)
+- Permite duplicatas
+- Elementos NÃO podem ser modificados
+- Acessada por índices
+
+Dicionário (dict): Coleção de pares chave-valor
+- Sintaxe: {"nome": "João", "idade": 25}
+- Chaves únicas
+- Valores mutáveis
+- Acessado por chaves
+
+Conjunto (set): Coleção não ordenada e sem duplicatas
+- Sintaxe: {1, 2, 3}
+- NÃO permite duplicatas
+- Elementos únicos
+- Operações matemáticas de conjunto
+
+
+================================================================================
+2. LISTAS (LISTS)
+================================================================================
+
+2.1 CONCEITOS BÁSICOS DE LISTAS
+--------------------------------------------------------------------------------
+Listas são coleções ordenadas e mutáveis que podem conter elementos de 
+qualquer tipo.
+
+Criando listas vazias:
+lista_vazia = []
+outra_lista = list()
+
+Criando listas com elementos:
+numeros = [1, 2, 3, 4, 5]
+frutas = ["maçã", "banana", "laranja"]
+misturada = [1, "texto", 3.14, True, [1, 2]]
+
+Características das listas:
+- Ordenadas: mantêm a ordem de inserção
+- Mutáveis: podem ser modificadas após criação
+- Permitem duplicatas: [1, 1, 2, 2] é válido
+- Indexadas: acessadas por posição (começando em 0)
+- Heterogêneas: podem conter tipos diferentes
+
+2.2 ACESSANDO ELEMENTOS
+--------------------------------------------------------------------------------
+Acesso por índice positivo (começa em 0):
+frutas = ["maçã", "banana", "laranja", "uva"]
+print(frutas[0])   # "maçã" (primeiro elemento)
+print(frutas[1])   # "banana"
+print(frutas[3])   # "uva" (último elemento)
+
+Acesso por índice negativo (começa em -1):
+print(frutas[-1])  # "uva" (último elemento)
+print(frutas[-2])  # "laranja" (penúltimo)
+print(frutas[-4])  # "maçã" (primeiro elemento)
+
+IMPORTANTE: Tentar acessar índice inexistente gera erro!
+# frutas[10]  # IndexError: list index out of range
+
+Verificando se índice existe:
+if 0 <= indice < len(frutas):
+    print(frutas[indice])
+
+2.3 FATIAMENTO (SLICING)
+--------------------------------------------------------------------------------
+Extrai sublistas usando [inicio:fim:passo]
+
+Fatiamento básico:
+numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+numeros[2:5]      # [2, 3, 4] (índices 2, 3, 4)
+numeros[:3]       # [0, 1, 2] (do início até índice 2)
+numeros[5:]       # [5, 6, 7, 8, 9] (do índice 5 até o fim)
+numeros[:]        # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] (cópia completa)
+
+Fatiamento com passo:
+numeros[::2]      # [0, 2, 4, 6, 8] (elementos pares)
+numeros[1::2]     # [1, 3, 5, 7, 9] (elementos ímpares)
+numeros[::3]      # [0, 3, 6, 9] (a cada 3 elementos)
+
+Fatiamento reverso:
+numeros[::-1]     # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] (lista invertida)
+numeros[-3:]      # [7, 8, 9] (últimos 3 elementos)
+numeros[:-3]      # [0, 1, 2, 3, 4, 5, 6] (todos exceto últimos 3)
+
+Exemplos práticos:
+texto = "Python"
+lista = list(texto)  # ['P', 'y', 't', 'h', 'o', 'n']
+lista[1:4]           # ['y', 't', 'h']
+lista[::2]           # ['P', 't', 'o']
+
+2.4 MODIFICANDO LISTAS
+--------------------------------------------------------------------------------
+Modificar elemento individual:
+frutas = ["maçã", "banana", "laranja"]
+frutas[1] = "morango"
+print(frutas)  # ["maçã", "morango", "laranja"]
+
+Modificar múltiplos elementos:
+numeros = [1, 2, 3, 4, 5]
+numeros[1:3] = [20, 30]
+print(numeros)  # [1, 20, 30, 4, 5]
+
+Modificar com tamanhos diferentes:
+numeros = [1, 2, 3, 4, 5]
+numeros[1:3] = [10, 20, 30, 40]
+print(numeros)  # [1, 10, 20, 30, 40, 4, 5]
+
+Deletar elementos:
+del frutas[1]     # Remove elemento no índice 1
+del frutas[1:3]   # Remove elementos dos índices 1 e 2
+
+2.5 MÉTODOS IMPORTANTES DE LISTAS
+--------------------------------------------------------------------------------
+ADICIONAR ELEMENTOS:
+
+append(item): Adiciona item ao final
+frutas = ["maçã", "banana"]
+frutas.append("laranja")
+print(frutas)  # ["maçã", "banana", "laranja"]
+
+insert(indice, item): Insere item em posição específica
+frutas.insert(1, "uva")
+print(frutas)  # ["maçã", "uva", "banana", "laranja"]
+
+extend(iteravel): Adiciona múltiplos elementos
+frutas.extend(["manga", "abacaxi"])
+print(frutas)  # ["maçã", "uva", "banana", "laranja", "manga", "abacaxi"]
+
+# Diferença entre append e extend:
+lista1 = [1, 2]
+lista1.append([3, 4])    # [1, 2, [3, 4]] - adiciona lista como elemento
+lista2 = [1, 2]
+lista2.extend([3, 4])    # [1, 2, 3, 4] - adiciona elementos individualmente
+
+--------------------------------------------------------------------------------
+REMOVER ELEMENTOS:
+
+remove(item): Remove primeira ocorrência do item
+frutas = ["maçã", "banana", "maçã", "laranja"]
+frutas.remove("maçã")
+print(frutas)  # ["banana", "maçã", "laranja"]
+
+pop(): Remove e retorna último elemento
+frutas = ["maçã", "banana", "laranja"]
+ultima = frutas.pop()
+print(ultima)  # "laranja"
+print(frutas)  # ["maçã", "banana"]
+
+pop(indice): Remove e retorna elemento em índice específico
+segunda = frutas.pop(1)
+print(segunda)  # "banana"
+
+clear(): Remove todos os elementos
+frutas.clear()
+print(frutas)  # []
+
+--------------------------------------------------------------------------------
+BUSCAR E CONTAR:
+
+index(item): Retorna índice da primeira ocorrência
+frutas = ["maçã", "banana", "laranja", "banana"]
+pos = frutas.index("banana")
+print(pos)  # 1
+
+# Com início e fim:
+pos = frutas.index("banana", 2)  # Busca a partir do índice 2
+print(pos)  # 3
+
+count(item): Conta ocorrências do item
+numeros = [1, 2, 3, 2, 4, 2, 5]
+quantidade = numeros.count(2)
+print(quantidade)  # 3
+
+--------------------------------------------------------------------------------
+ORDENAR E INVERTER:
+
+sort(): Ordena a lista in-place (modifica a original)
+numeros = [3, 1, 4, 1, 5, 9, 2]
+numeros.sort()
+print(numeros)  # [1, 1, 2, 3, 4, 5, 9]
+
+# Ordem decrescente:
+numeros.sort(reverse=True)
+print(numeros)  # [9, 5, 4, 3, 2, 1, 1]
+
+# Ordenar strings:
+frutas = ["banana", "maçã", "laranja", "abacaxi"]
+frutas.sort()
+print(frutas)  # ["abacaxi", "banana", "laranja", "maçã"]
+
+sorted(): Retorna nova lista ordenada (não modifica original)
+numeros = [3, 1, 4, 1, 5]
+ordenados = sorted(numeros)
+print(numeros)     # [3, 1, 4, 1, 5] (original intacta)
+print(ordenados)   # [1, 1, 3, 4, 5]
+
+reverse(): Inverte a ordem dos elementos
+numeros = [1, 2, 3, 4, 5]
+numeros.reverse()
+print(numeros)  # [5, 4, 3, 2, 1]
+
+--------------------------------------------------------------------------------
+COPIAR LISTAS:
+
+copy(): Cria cópia rasa da lista
+original = [1, 2, 3]
+copia = original.copy()
+copia[0] = 100
+print(original)  # [1, 2, 3] (não foi modificada)
+print(copia)     # [100, 2, 3]
+
+# Outras formas de copiar:
+copia2 = original[:]
+copia3 = list(original)
+
+IMPORTANTE: Atribuição NÃO copia!
+lista1 = [1, 2, 3]
+lista2 = lista1  # lista2 aponta para mesma lista
+lista2[0] = 100
+print(lista1)    # [100, 2, 3] - modificada também!
+
+2.6 OPERAÇÕES COM LISTAS
+--------------------------------------------------------------------------------
+Concatenação (+):
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+lista3 = lista1 + lista2
+print(lista3)  # [1, 2, 3, 4, 5, 6]
+
+Repetição (*):
+lista = [1, 2, 3]
+repetida = lista * 3
+print(repetida)  # [1, 2, 3, 1, 2, 3, 1, 2, 3]
+
+Verificar pertencimento (in):
+frutas = ["maçã", "banana", "laranja"]
+print("maçã" in frutas)      # True
+print("uva" in frutas)       # False
+print("uva" not in frutas)   # True
+
+Tamanho (len):
+frutas = ["maçã", "banana", "laranja"]
+print(len(frutas))  # 3
+
+Mínimo, máximo e soma:
+numeros = [10, 5, 8, 3, 12]
+print(min(numeros))  # 3
+print(max(numeros))  # 12
+print(sum(numeros))  # 38
+
+2.7 LIST COMPREHENSION
+--------------------------------------------------------------------------------
+Forma concisa de criar listas baseadas em sequências existentes.
+
+Sintaxe básica:
+[expressao for item in sequencia]
+
+Exemplos simples:
+quadrados = [x**2 for x in range(1, 6)]
+print(quadrados)  # [1, 4, 9, 16, 25]
+
+pares = [x for x in range(1, 11) if x % 2 == 0]
+print(pares)  # [2, 4, 6, 8, 10]
+
+maiusculas = [fruta.upper() for fruta in ["maçã", "banana", "laranja"]]
+print(maiusculas)  # ["MAÇÃ", "BANANA", "LARANJA"]
+
+Com condição:
+[expressao for item in sequencia if condicao]
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pares_dobro = [x * 2 for x in numeros if x % 2 == 0]
+print(pares_dobro)  # [4, 8, 12, 16, 20]
+
+Com if-else:
+[expressao_if if condicao else expressao_else for item in sequencia]
+
+par_impar = ["par" if x % 2 == 0 else "ímpar" for x in range(1, 6)]
+print(par_impar)  # ["ímpar", "par", "ímpar", "par", "ímpar"]
+
+Comprehension aninhada:
+matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+planificada = [num for linha in matriz for num in linha]
+print(planificada)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+2.8 LISTAS ANINHADAS (MATRIZES)
+--------------------------------------------------------------------------------
+Listas podem conter outras listas, criando estruturas multidimensionais.
+
+Criando matriz:
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+Acessando elementos:
+print(matriz[0])      # [1, 2, 3] (primeira linha)
+print(matriz[0][0])   # 1 (elemento da linha 0, coluna 0)
+print(matriz[1][2])   # 6 (elemento da linha 1, coluna 2)
+
+Iterando sobre matriz:
+for linha in matriz:
+    for elemento in linha:
+        print(elemento, end=" ")
+    print()  # Nova linha
+
+# Saída:
+# 1 2 3 
+# 4 5 6 
+# 7 8 9
+
+Criando matriz com comprehension:
+# Matriz 3x3 preenchida com zeros:
+matriz = [[0 for _ in range(3)] for _ in range(3)]
+# [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+# Matriz identidade 4x4:
+identidade = [[1 if i == j else 0 for j in range(4)] for i in range(4)]
+# [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+
+
+================================================================================
+3. TUPLAS (TUPLES)
+================================================================================
+
+3.1 CONCEITOS BÁSICOS DE TUPLAS
+--------------------------------------------------------------------------------
+Tuplas são coleções ordenadas e IMUTÁVEIS. Após criadas, não podem ser
+modificadas.
+
+Criando tuplas:
+tupla_vazia = ()
+tupla_vazia2 = tuple()
+
+tupla_simples = (1, 2, 3, 4, 5)
+coordenadas = (10.5, 20.3)
+misturada = (1, "texto", 3.14, True)
+
+IMPORTANTE: Tupla com um elemento precisa de vírgula:
+nao_tupla = (1)      # Isso é int, não tupla!
+tupla = (1,)         # Tupla com um elemento
+print(type(nao_tupla))  # <class 'int'>
+print(type(tupla))      # <class 'tuple'>
+
+Tuplas sem parênteses (packing):
+ponto = 10, 20, 30   # Também é tupla!
+print(type(ponto))   # <class 'tuple'>
+
+3.2 ACESSANDO ELEMENTOS
+--------------------------------------------------------------------------------
+Acesso por índice (igual às listas):
+cores = ("vermelho", "verde", "azul", "amarelo")
+print(cores[0])    # "vermelho"
+print(cores[-1])   # "amarelo"
+print(cores[1:3])  # ("verde", "azul")
+
+Tuplas são IMUTÁVEIS - não podem ser modificadas:
+# cores[0] = "roxo"  # TypeError: 'tuple' object does not support item assignment
+
+Mas podem conter objetos mutáveis:
+tupla_mista = (1, 2, [3, 4])
+tupla_mista[2][0] = 100  # Modifica a lista dentro da tupla
+print(tupla_mista)  # (1, 2, [100, 4])
+
+3.3 OPERAÇÕES COM TUPLAS
+--------------------------------------------------------------------------------
+Concatenação:
+tupla1 = (1, 2, 3)
+tupla2 = (4, 5, 6)
+tupla3 = tupla1 + tupla2
+print(tupla3)  # (1, 2, 3, 4, 5, 6)
+
+Repetição:
+tupla = (1, 2)
+repetida = tupla * 3
+print(repetida)  # (1, 2, 1, 2, 1, 2)
+
+Verificar pertencimento:
+cores = ("vermelho", "verde", "azul")
+print("verde" in cores)  # True
+print("roxo" in cores)   # False
+
+Tamanho:
+print(len(cores))  # 3
+
+Mínimo e máximo:
+numeros = (5, 2, 8, 1, 9)
+print(min(numeros))  # 1
+print(max(numeros))  # 9
+
+3.4 MÉTODOS DE TUPLAS
+--------------------------------------------------------------------------------
+Tuplas têm apenas 2 métodos (por serem imutáveis):
+
+count(item): Conta ocorrências
+numeros = (1, 2, 3, 2, 4, 2, 5)
+print(numeros.count(2))  # 3
+
+index(item): Retorna índice da primeira ocorrência
+print(numeros.index(3))  # 2
+
+3.5 DESEMPACOTAMENTO DE TUPLAS
+--------------------------------------------------------------------------------
+Atribuir elementos de tupla a múltiplas variáveis:
+
+Desempacotamento simples:
+coordenadas = (10, 20)
+x, y = coordenadas
+print(x)  # 10
+print(y)  # 20
+
+Desempacotamento direto:
+nome, idade, cidade = ("João", 25, "São Paulo")
+print(nome)    # "João"
+print(idade)   # 25
+print(cidade)  # "São Paulo"
+
+Usando asterisco (*) para capturar múltiplos valores:
+numeros = (1, 2, 3, 4, 5)
+primeiro, *meio, ultimo = numeros
+print(primeiro)  # 1
+print(meio)      # [2, 3, 4]
+print(ultimo)    # 5
+
+Exemplos práticos:
+# Trocar valores de variáveis:
+a = 10
+b = 20
+a, b = b, a
+print(a, b)  # 20 10
+
+# Retornar múltiplos valores de função:
+def calcular(a, b):
+    return a + b, a - b, a * b, a / b
+
+soma, subtracao, multiplicacao, divisao = calcular(10, 2)
+
+# Ignorar valores com _:
+nome, _, idade = ("João", "Silva", 25)
+print(nome)   # "João"
+print(idade)  # 25
+
+3.6 QUANDO USAR TUPLAS?
+--------------------------------------------------------------------------------
+Use tuplas quando:
+✅ Os dados não devem ser modificados (imutabilidade)
+✅ Retornar múltiplos valores de função
+✅ Usar como chaves de dicionário (listas não podem)
+✅ Dados representam uma estrutura fixa (coordenadas, RGB, etc)
+✅ Pequeno ganho de performance sobre listas
+
+Use listas quando:
+✅ Os dados precisam ser modificados
+✅ Adicionar/remover elementos frequentemente
+✅ Precisa de métodos de ordenação e manipulação
+
+Exemplo - tupla como chave de dicionário:
+coordenadas_cidades = {
+    (23.5505, 46.6333): "São Paulo",
+    (22.9068, 43.1729): "Rio de Janeiro",
+    (19.9167, 43.9345): "Belo Horizonte"
+}
+
+
+================================================================================
+4. DICIONÁRIOS (DICTIONARIES)
+================================================================================
+
+4.1 CONCEITOS BÁSICOS DE DICIONÁRIOS
+--------------------------------------------------------------------------------
+Dicionários armazenam dados em pares chave-valor. São mutáveis e não ordenados
+(antes do Python 3.7) / ordenados por inserção (Python 3.7+).
+
+Criando dicionários vazios:
+dicionario_vazio = {}
+outro_dicionario = dict()
+
+Criando dicionários com dados:
+pessoa = {
+    "nome": "João",
+    "idade": 25,
+    "cidade": "São Paulo"
+}
+
+# Chaves podem ser de vários tipos:
+variado = {
+    1: "um",
+    "dois": 2,
+    (3, 4): "tupla",
+    True: "booleano"
+}
+
+IMPORTANTE: Chaves devem ser imutáveis (strings, números, tuplas)
+# {[1, 2]: "valor"}  # TypeError: unhashable type: 'list'
+
+Criando com dict():
+pessoa = dict(nome="Maria", idade=30, cidade="Rio de Janeiro")
+
+Criando com lista de tuplas:
+pares = [("a", 1), ("b", 2), ("c", 3)]
+dicionario = dict(pares)
+print(dicionario)  # {"a": 1, "b": 2, "c": 3}
+
+4.2 ACESSANDO VALORES
+--------------------------------------------------------------------------------
+Acesso por chave:
+pessoa = {"nome": "João", "idade": 25, "cidade": "São Paulo"}
+print(pessoa["nome"])    # "João"
+print(pessoa["idade"])   # 25
+
+CUIDADO: Chave inexistente gera erro!
+# print(pessoa["telefone"])  # KeyError: 'telefone'
+
+Acesso seguro com get():
+pessoa = {"nome": "João", "idade": 25}
+
+telefone = pessoa.get("telefone")
+print(telefone)  # None (não gera erro)
+
+# Com valor padrão:
+telefone = pessoa.get("telefone", "Não informado")
+print(telefone)  # "Não informado"
+
+Verificar se chave existe:
+if "nome" in pessoa:
+    print(pessoa["nome"])
+
+# Ou:
+if "telefone" not in pessoa:
+    print("Telefone não cadastrado")
+
+4.3 MODIFICANDO DICIONÁRIOS
+--------------------------------------------------------------------------------
+Adicionar ou modificar valor:
+pessoa = {"nome": "João", "idade": 25}
+
+pessoa["cidade"] = "São Paulo"    # Adiciona nova chave
+pessoa["idade"] = 26              # Modifica valor existente
+print(pessoa)  # {"nome": "João", "idade": 26, "cidade": "São Paulo"}
+
+Atualizar múltiplos valores com update():
+pessoa = {"nome": "João", "idade": 25}
+pessoa.update({"idade": 26, "cidade": "São Paulo", "profissao": "Engenheiro"})
+print(pessoa)
+# {"nome": "João", "idade": 26, "cidade": "São Paulo", "profissao": "Engenheiro"}
+
+Remover elementos:
+pessoa = {"nome": "João", "idade": 25, "cidade": "São Paulo"}
+
+# pop(chave): Remove e retorna valor
+idade = pessoa.pop("idade")
+print(idade)  # 25
+print(pessoa)  # {"nome": "João", "cidade": "São Paulo"}
+
+# pop com valor padrão:
+telefone = pessoa.pop("telefone", "Não tinha telefone")
+print(telefone)  # "Não tinha telefone"
+
+# popitem(): Remove e retorna último par inserido
+ultimo = pessoa.popitem()
+print(ultimo)  # ("cidade", "São Paulo")
+
+# del: Remove chave
+del pessoa["nome"]
+
+# clear(): Remove todos os elementos
+pessoa.clear()
+print(pessoa)  # {}
+
+4.4 MÉTODOS IMPORTANTES DE DICIONÁRIOS
+--------------------------------------------------------------------------------
+ACESSAR CHAVES E VALORES:
+
+keys(): Retorna todas as chaves
+pessoa = {"nome": "João", "idade": 25, "cidade": "São Paulo"}
+chaves = pessoa.keys()
+print(chaves)  # dict_keys(['nome', 'idade', 'cidade'])
+print(list(chaves))  # ['nome', 'idade', 'cidade']
+
+values(): Retorna todos os valores
+valores = pessoa.values()
+print(valores)  # dict_values(['João', 25, 'São Paulo'])
+print(list(valores))  # ['João', 25, 'São Paulo']
+
+items(): Retorna pares chave-valor
+itens = pessoa.items()
+print(itens)  # dict_items([('nome', 'João'), ('idade', 25), ('cidade', 'São Paulo')])
+print(list(itens))  # [('nome', 'João'), ('idade', 25), ('cidade', 'São Paulo')]
+
+--------------------------------------------------------------------------------
+OUTROS MÉTODOS ÚTEIS:
+
+setdefault(chave, valor_padrao): Retorna valor se chave existe, senão adiciona
+pessoa = {"nome": "João"}
+idade = pessoa.setdefault("idade", 25)
+print(idade)  # 25
+print(pessoa)  # {"nome": "João", "idade": 25}
+
+nome = pessoa.setdefault("nome", "Maria")
+print(nome)  # "João" (já existia, não foi modificado)
+
+copy(): Cria cópia rasa
+original = {"a": 1, "b": 2}
+copia = original.copy()
+copia["a"] = 100
+print(original)  # {"a": 1, "b": 2}
+print(copia)     # {"a": 100, "b": 2}
+
+fromkeys(chaves, valor): Cria dicionário com chaves e valor padrão
+chaves = ["a", "b", "c"]
+dicionario = dict.fromkeys(chaves, 0)
+print(dicionario)  # {"a": 0, "b": 0, "c": 0}
+
+# Sem valor padrão (usa None):
+dicionario = dict.fromkeys(chaves)
+print(dicionario)  # {"a": None, "b": None, "c": None}
+
+4.5 ITERANDO SOBRE DICIONÁRIOS
+--------------------------------------------------------------------------------
+Iterar sobre chaves (padrão):
+pessoa = {"nome": "João", "idade": 25, "cidade": "São Paulo"}
+
+for chave in pessoa:
+    print(chave)
+# nome
+# idade
+# cidade
+
+Iterar sobre valores:
+for valor in pessoa.values():
+    print(valor)
+# João
+# 25
+# São Paulo
+
+Iterar sobre chave e valor:
+for chave, valor in pessoa.items():
+    print(f"{chave}: {valor}")
+# nome: João
+# idade: 25
+# cidade: São Paulo
+
+4.6 DICTIONARY COMPREHENSION
+--------------------------------------------------------------------------------
+Sintaxe básica:
+{chave: valor for item in sequencia}
+
+Exemplos simples:
+quadrados = {x: x**2 for x in range(1, 6)}
+print(quadrados)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+
+Com condição:
+pares = {x: x**2 for x in range(1, 11) if x % 2 == 0}
+print(pares)  # {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+
+Invertendo dicionário:
+original = {"a": 1, "b": 2, "c": 3}
+invertido = {v: k for k, v in original.items()}
+print(invertido)  # {1: "a", 2: "b", 3: "c"}
+
+Transformando valores:
+frutas = ["maçã", "banana", "laranja"]
+tamanhos = {fruta: len(fruta) for fruta in frutas}
+print(tamanhos)  # {"maçã": 4, "banana": 6, "laranja": 7}
+
+4.7 DICIONÁRIOS ANINHADOS
+--------------------------------------------------------------------------------
+Dicionários podem conter outros dicionários:
+
+agenda = {
+    "João": {
+        "telefone": "1111-1111",
+        "email": "joao@email.com",
+        "idade": 25
+    },
+    "Maria": {
+        "telefone": "2222-2222",
+        "email": "maria@email.com",
+        "idade": 30
+    }
+}
+
+Acessando valores aninhados:
+print(agenda["João"]["telefone"])  # "1111-1111"
+print(agenda["Maria"]["idade"])    # 30
+
+Modificando valores aninhados:
+agenda["João"]["idade"] = 26
+
+Adicionando novo contato:
+agenda["Pedro"] = {
+    "telefone": "3333-3333",
+    "email": "pedro@email.com",
+    "idade": 28
+}
+
+Iterando sobre dicionário aninhado:
+for nome, dados in agenda.items():
+    print(f"\n{nome}:")
+    for chave, valor in dados.items():
+        print(f"  {chave}: {valor}")
+
+4.8 CASOS DE USO COMUNS
+--------------------------------------------------------------------------------
+Contar ocorrências:
+texto = "python é uma linguagem python"
+palavras = texto.split()
+
+contador = {}
+for palavra in palavras:
+    contador[palavra] = contador.get(palavra, 0) + 1
+
+print(contador)
+# {"python": 2, "é": 1, "uma": 1, "linguagem": 1}
+
+Agrupar dados:
+alunos = [
+    {"nome": "João", "turma": "A"},
+    {"nome": "Maria", "turma": "B"},
+    {"nome": "Pedro", "turma": "A"},
+    {"nome": "Ana", "turma": "B"}
+]
+
+por_turma = {}
+for aluno in alunos:
+    turma = aluno["turma"]
+    if turma not in por_turma:
+        por_turma[turma] = []
+    por_turma[turma].append(aluno["nome"])
+
+print(por_turma)
+# {"A": ["João", "Pedro"], "B": ["Maria", "Ana"]}
+
+Cache de resultados:
+cache = {}
+
+def fibonacci(n):
+    if n in cache:
+        return cache[n]
+    
+    if n <= 1:
+        return n
+    
+    resultado = fibonacci(n-1) + fibonacci(n-2)
+    cache[n] = resultado
+    return resultado
+
+
+================================================================================
+5. CONJUNTOS (SETS)
+================================================================================
+
+5.1 CONCEITOS BÁSICOS DE CONJUNTOS
+--------------------------------------------------------------------------------
+Conjuntos são coleções não ordenadas de elementos únicos. Úteis para eliminar
+duplicatas e operações matemáticas de conjunto.
+
+Criando conjuntos:
+conjunto_vazio = set()  # NÃO use {} - isso cria dicionário!
+numeros = {1, 2, 3, 4, 5}
+frutas = {"maçã", "banana", "laranja"}
+
+# Conjuntos NÃO permitem duplicatas:
+numeros = {1, 2, 3, 2, 1}
+print(numeros)  # {1, 2, 3}
+
+Criando set a partir de lista:
+lista = [1, 2, 3, 2, 1, 4, 5, 4]
+conjunto = set(lista)
+print(conjunto)  # {1, 2, 3, 4, 5}
+
+Criando set a partir de string:
+letras = set("banana")
+print(letras)  # {"b", "a", "n"} - ordem pode variar
+
+Características dos sets:
+- Não ordenados: não mantêm ordem de inserção
+- Elementos únicos: não há duplicatas
+- Mutáveis: podem adicionar/remover elementos
+- Elementos devem ser imutáveis (strings, números, tuplas)
+
+5.2 OPERAÇÕES BÁSICAS
+--------------------------------------------------------------------------------
+Adicionar elementos:
+frutas = {"maçã", "banana"}
+frutas.add("laranja")
+print(frutas)  # {"maçã", "banana", "laranja"}
+
+# Adicionar elemento já existente não tem efeito:
+frutas.add("maçã")
+print(frutas)  # {"maçã", "banana", "laranja"}
+
+Adicionar múltiplos elementos:
+frutas = {"maçã", "banana"}
+frutas.update(["laranja", "uva", "manga"])
+print(frutas)  # {"maçã", "banana", "laranja", "uva", "manga"}
+
+# update aceita qualquer iterável:
+frutas.update("kiwi")  # Adiciona cada letra
+print(frutas)  # {"maçã", "banana", "laranja", "uva", "manga", "k", "i", "w"}
+
+Remover elementos:
+frutas = {"maçã", "banana", "laranja", "uva"}
+
+# remove(): Gera erro se elemento não existe
+frutas.remove("banana")
+# frutas.remove("manga")  # KeyError: 'manga'
+
+# discard(): NÃO gera erro se elemento não existe
+frutas.discard("laranja")
+frutas.discard("manga")  # Sem erro
+
+# pop(): Remove e retorna elemento aleatório
+fruta = frutas.pop()
+print(fruta)
+
+# clear(): Remove todos elementos
+frutas.clear()
+print(frutas)  # set()
+
+Tamanho:
+frutas = {"maçã", "banana", "laranja"}
+print(len(frutas))  # 3
+
+Verificar pertencimento:
+print("maçã" in frutas)      # True
+print("uva" in frutas)       # False
+print("uva" not in frutas)   # True
+
+5.3 OPERAÇÕES MATEMÁTICAS DE CONJUNTOS
+--------------------------------------------------------------------------------
+União (|): Elementos que estão em A OU B
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+uniao = a | b
+print(uniao)  # {1, 2, 3, 4, 5, 6}
+
+# Método alternativo:
+uniao = a.union(b)
+
+Interseção (&): Elementos que estão em A E B
+intersecao = a & b
+print(intersecao)  # {3, 4}
+
+# Método alternativo:
+intersecao = a.intersection(b)
+
+Diferença (-): Elementos que estão em A mas NÃO em B
+diferenca = a - b
+print(diferenca)  # {1, 2}
+
+# Método alternativo:
+diferenca = a.difference(b)
+
+Diferença simétrica (^): Elementos em A ou B, mas NÃO em ambos
+dif_simetrica = a ^ b
+print(dif_simetrica)  # {1, 2, 5, 6}
+
+# Método alternativo:
+dif_simetrica = a.symmetric_difference(b)
+
+Exemplo visual:
+A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+
+# A ∪ B (união):        {1, 2, 3, 4, 5, 6}
+# A ∩ B (interseção):   {3, 4}
+# A - B (diferença):    {1, 2}
+# A △ B (dif. simét.):  {1, 2, 5, 6}
+
+5.4 MÉTODOS DE COMPARAÇÃO
+--------------------------------------------------------------------------------
+Subconjunto (<=): Verifica se A está contido em B
+a = {1, 2, 3}
+b = {1, 2, 3, 4, 5}
+
+print(a <= b)  # True (a é subconjunto de b)
+print(a.issubset(b))  # True
+
+Subconjunto próprio (<): A está contido em B e A ≠ B
+print(a < b)  # True
+
+Superconjunto (>=): Verifica se A contém B
+print(b >= a)  # True (b é superconjunto de a)
+print(b.issuperset(a))  # True
+
+Superconjunto próprio (>): A contém B e A ≠ B
+print(b > a)  # True
+
+Disjuntos: Sem elementos em comum
+a = {1, 2, 3}
+b = {4, 5, 6}
+print(a.isdisjoint(b))  # True
+
+c = {3, 4, 5}
+print(a.isdisjoint(c))  # False (compartilham o 3)
+
+5.5 MÉTODOS DE MODIFICAÇÃO IN-PLACE
+--------------------------------------------------------------------------------
+Estes métodos modificam o conjunto original:
+
+update(): União in-place
+a = {1, 2, 3}
+a.update({3, 4, 5})
+print(a)  # {1, 2, 3, 4, 5}
+
+intersection_update(): Interseção in-place
+a = {1, 2, 3, 4}
+a.intersection_update({3, 4, 5, 6})
+print(a)  # {3, 4}
+
+difference_update(): Diferença in-place
+a = {1, 2, 3, 4}
+a.difference_update({3, 4, 5, 6})
+print(a)  # {1, 2}
+
+symmetric_difference_update(): Diferença simétrica in-place
+a = {1, 2, 3, 4}
+a.symmetric_difference_update({3, 4, 5, 6})
+print(a)  # {1, 2, 5, 6}
+
+5.6 SET COMPREHENSION
+--------------------------------------------------------------------------------
+Sintaxe básica:
+{expressao for item in sequencia}
+
+Exemplos:
+quadrados = {x**2 for x in range(1, 6)}
+print(quadrados)  # {1, 4, 9, 16, 25}
+
+Com condição:
+pares = {x for x in range(1, 11) if x % 2 == 0}
+print(pares)  # {2, 4, 6, 8, 10}
+
+Remover duplicatas e transformar:
+palavras = ["Python", "python", "PYTHON", "Java", "java"]
+minusculas = {p.lower() for p in palavras}
+print(minusculas)  # {"python", "java"}
+
+5.7 FROZENSET - CONJUNTO IMUTÁVEL
+--------------------------------------------------------------------------------
+Frozenset é uma versão imutável de set. Pode ser usado como chave de dicionário.
+
+Criando frozenset:
+numeros = frozenset([1, 2, 3, 4, 5])
+print(numeros)  # frozenset({1, 2, 3, 4, 5})
+
+Não pode ser modificado:
+# numeros.add(6)  # AttributeError: 'frozenset' object has no attribute 'add'
+
+Operações matemáticas funcionam:
+a = frozenset([1, 2, 3])
+b = frozenset([3, 4, 5])
+print(a | b)  # frozenset({1, 2, 3, 4, 5})
+print(a & b)  # frozenset({3})
+
+Usando como chave de dicionário:
+conjuntos = {
+    frozenset([1, 2]): "par 1-2",
+    frozenset([3, 4]): "par 3-4"
+}
+
+5.8 CASOS DE USO COMUNS
+--------------------------------------------------------------------------------
+Remover duplicatas:
+numeros = [1, 2, 3, 2, 1, 4, 5, 4, 3]
+unicos = list(set(numeros))
+print(unicos)  # [1, 2, 3, 4, 5] (ordem pode variar)
+
+# Preservando ordem:
+from collections import OrderedDict
+unicos = list(OrderedDict.fromkeys(numeros))
+# Ou em Python 3.7+:
+unicos = list(dict.fromkeys(numeros))
+
+Encontrar elementos comuns:
+lista1 = [1, 2, 3, 4, 5]
+lista2 = [4, 5, 6, 7, 8]
+comuns = set(lista1) & set(lista2)
+print(comuns)  # {4, 5}
+
+Encontrar elementos únicos de cada lista:
+unicos_lista1 = set(lista1) - set(lista2)
+unicos_lista2 = set(lista2) - set(lista1)
+print(unicos_lista1)  # {1, 2, 3}
+print(unicos_lista2)  # {6, 7, 8}
+
+Verificar se listas têm elementos em comum:
+tem_comum = bool(set(lista1) & set(lista2))
+print(tem_comum)  # True
+
+Validar valores únicos:
+emails = ["user1@mail.com", "user2@mail.com", "user1@mail.com"]
+if len(emails) != len(set(emails)):
+    print("Há emails duplicados!")
+
+
+================================================================================
+6. COMPARAÇÃO ENTRE ESTRUTURAS
+================================================================================
+
+6.1 QUANDO USAR CADA ESTRUTURA?
+--------------------------------------------------------------------------------
+LISTA:
+✅ Quando precisa manter ordem
+✅ Quando permite duplicatas
+✅ Quando precisa modificar elementos
+✅ Quando precisa acessar por índice
+✅ Quando adiciona/remove elementos frequentemente
+
+Exemplos: histórico, sequências, filas, pilhas
+
+TUPLA:
+✅ Quando dados não devem mudar
+✅ Quando usa como chave de dicionário
+✅ Quando retorna múltiplos valores
+✅ Quando representa estrutura fixa
+✅ Pequeno ganho de performance
+
+Exemplos: coordenadas, RGB, dados constantes, retorno de funções
+
+DICIONÁRIO:
+✅ Quando precisa mapear chave → valor
+✅ Quando acessa dados por identificador
+✅ Quando precisa de busca rápida
+✅ Quando dados têm estrutura chave-valor
+✅ Quando agrupa dados relacionados
+
+Exemplos: configurações, cache, índices, mapeamentos
+
+SET:
+✅ Quando precisa elementos únicos
+✅ Quando faz operações de conjunto
+✅ Quando remove duplicatas
+✅ Quando testa pertencimento rapidamente
+✅ Quando ordem não importa
+
+Exemplos: tags, categorias únicas, operações matemáticas
+
+6.2 TABELA COMPARATIVA
+--------------------------------------------------------------------------------
+Característica    | Lista  | Tupla  | Dicionário | Set
+--------------------------------------------------------------------------------
+Ordenada          | Sim    | Sim    | Sim*       | Não
+Mutável           | Sim    | Não    | Sim        | Sim
+Duplicatas        | Sim    | Sim    | Chaves não | Não
+Indexada          | Sim    | Sim    | Por chave  | Não
+Sintaxe           | []     | ()     | {}         | {}
+Criação vazia     | []     | ()     | {}         | set()
+
+* Ordenada a partir do Python 3.7
+
+6.3 COMPLEXIDADE DE OPERAÇÕES (BIG O)
+--------------------------------------------------------------------------------
+Operação          | Lista  | Tupla  | Dicionário | Set
+--------------------------------------------------------------------------------
+Acesso            | O(1)   | O(1)   | O(1)       | -
+Busca             | O(n)   | O(n)   | O(1)       | O(1)
+Inserção início   | O(n)   | -      | O(1)       | O(1)
+Inserção fim      | O(1)   | -      | O(1)       | O(1)
+Remoção           | O(n)   | -      | O(1)       | O(1)
+Iteração          | O(n)   | O(n)   | O(n)       | O(n)
+
+6.4 CONVERSÕES ENTRE ESTRUTURAS
+--------------------------------------------------------------------------------
+De lista para outras:
+lista = [1, 2, 3, 2, 1]
+tupla = tuple(lista)       # (1, 2, 3, 2, 1)
+conjunto = set(lista)      # {1, 2, 3}
+
+De tupla para outras:
+tupla = (1, 2, 3)
+lista = list(tupla)        # [1, 2, 3]
+conjunto = set(tupla)      # {1, 2, 3}
+
+De set para outras:
+conjunto = {1, 2, 3}
+lista = list(conjunto)     # [1, 2, 3] (ordem pode variar)
+tupla = tuple(conjunto)    # (1, 2, 3) (ordem pode variar)
+
+De dicionário para outras:
+dicionario = {"a": 1, "b": 2, "c": 3}
+lista_chaves = list(dicionario)           # ["a", "b", "c"]
+lista_valores = list(dicionario.values()) # [1, 2, 3]
+lista_pares = list(dicionario.items())    # [("a", 1), ("b", 2), ("c", 3)]
+
+Para dicionário:
+pares = [("a", 1), ("b", 2)]
+dicionario = dict(pares)   # {"a": 1, "b": 2}
+
+
+================================================================================
+7. TÉCNICAS AVANÇADAS
+================================================================================
+
+7.1 DESEMPACOTAMENTO AVANÇADO
+--------------------------------------------------------------------------------
+Desempacotamento de listas:
+numeros = [1, 2, 3, 4, 5]
+primeiro, *meio, ultimo = numeros
+print(primeiro)  # 1
+print(meio)      # [2, 3, 4]
+print(ultimo)    # 5
+
+Desempacotamento em loops:
+pessoas = [("João", 25), ("Maria", 30), ("Pedro", 28)]
+for nome, idade in pessoas:
+    print(f"{nome} tem {idade} anos")
+
+Desempacotamento de dicionários:
+dados = {"nome": "João", "idade": 25}
+for chave, valor in dados.items():
+    print(f"{chave}: {valor}")
+
+Múltiplo desempacotamento:
+lista1 = [1, 2]
+lista2 = [3, 4]
+combinada = [*lista1, *lista2]
+print(combinada)  # [1, 2, 3, 4]
+
+dict1 = {"a": 1, "b": 2}
+dict2 = {"c": 3, "d": 4}
+combinado = {**dict1, **dict2}
+print(combinado)  # {"a": 1, "b": 2, "c": 3, "d": 4}
+
+7.2 FUNÇÕES ÚTEIS COM ESTRUTURAS
+--------------------------------------------------------------------------------
+all(): Verifica se todos são True
+numeros = [2, 4, 6, 8]
+todos_pares = all(n % 2 == 0 for n in numeros)
+print(todos_pares)  # True
+
+any(): Verifica se algum é True
+numeros = [1, 3, 5, 8]
+tem_par = any(n % 2 == 0 for n in numeros)
+print(tem_par)  # True (por causa do 8)
+
+zip(): Combina múltiplas sequências
+nomes = ["João", "Maria", "Pedro"]
+idades = [25, 30, 28]
+cidades = ["SP", "RJ", "BH"]
+
+for nome, idade, cidade in zip(nomes, idades, cidades):
+    print(f"{nome}, {idade} anos, {cidade}")
+
+# Criar dicionário com zip:
+dicionario = dict(zip(nomes, idades))
+print(dicionario)  # {"João": 25, "Maria": 30, "Pedro": 28}
+
+enumerate(): Adiciona índice
+frutas = ["maçã", "banana", "laranja"]
+for i, fruta in enumerate(frutas):
+    print(f"{i}: {fruta}")
+# 0: maçã
+# 1: banana
+# 2: laranja
+
+# Começando de outro número:
+for i, fruta in enumerate(frutas, start=1):
+    print(f"{i}. {fruta}")
+
+reversed(): Inverte sequência
+numeros = [1, 2, 3, 4, 5]
+for n in reversed(numeros):
+    print(n, end=" ")  # 5 4 3 2 1
+
+sorted(): Ordena sem modificar original
+numeros = [3, 1, 4, 1, 5, 9, 2]
+ordenados = sorted(numeros)
+print(numeros)     # [3, 1, 4, 1, 5, 9, 2] (original)
+print(ordenados)   # [1, 1, 2, 3, 4, 5, 9]
+
+# Ordenação personalizada:
+palavras = ["banana", "maçã", "abacaxi", "uva"]
+por_tamanho = sorted(palavras, key=len)
+print(por_tamanho)  # ["uva", "maçã", "banana", "abacaxi"]
+
+pessoas = [{"nome": "João", "idade": 25}, {"nome": "Maria", "idade": 30}]
+por_idade = sorted(pessoas, key=lambda p: p["idade"])
+
+filter(): Filtra elementos
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(pares)  # [2, 4, 6, 8, 10]
+
+map(): Transforma elementos
+numeros = [1, 2, 3, 4, 5]
+quadrados = list(map(lambda x: x**2, numeros))
+print(quadrados)  # [1, 4, 9, 16, 25]
+
+# Melhor usar comprehension:
+quadrados = [x**2 for x in numeros]
+
+7.3 CÓPIA PROFUNDA VS RASA
+--------------------------------------------------------------------------------
+Cópia rasa (shallow copy):
+original = [1, 2, [3, 4]]
+copia = original.copy()
+
+copia[0] = 100
+copia[2][0] = 300
+
+print(original)  # [1, 2, [300, 4]] - lista interna foi modificada!
+print(copia)     # [100, 2, [300, 4]]
+
+Cópia profunda (deep copy):
+import copy
+
+original = [1, 2, [3, 4]]
+copia = copy.deepcopy(original)
+
+copia[0] = 100
+copia[2][0] = 300
+
+print(original)  # [1, 2, [3, 4]] - não foi modificada
+print(copia)     # [100, 2, [300, 4]]
+
+7.4 DEFAULTDICT E COUNTER (COLLECTIONS)
+--------------------------------------------------------------------------------
+defaultdict: Dicionário com valor padrão
+from collections import defaultdict
+
+# Lista como valor padrão:
+grupos = defaultdict(list)
+grupos["frutas"].append("maçã")
+grupos["frutas"].append("banana")
+grupos["vegetais"].append("cenoura")
+print(dict(grupos))
+# {"frutas": ["maçã", "banana"], "vegetais": ["cenoura"]}
+
+# Int como valor padrão (para contadores):
+contador = defaultdict(int)
+texto = "banana"
+for letra in texto:
+    contador[letra] += 1
+print(dict(contador))
+# {"b": 1, "a": 3, "n": 2}
+
+Counter: Contador especializado
+from collections import Counter
+
+# Contar elementos:
+palavras = ["maçã", "banana", "maçã", "laranja", "banana", "maçã"]
+contador = Counter(palavras)
+print(contador)
+# Counter({"maçã": 3, "banana": 2, "laranja": 1})
+
+# Elementos mais comuns:
+print(contador.most_common(2))
+# [("maçã", 3), ("banana", 2)]
+
+# Contar caracteres:
+texto = "banana"
+letras = Counter(texto)
+print(letras)
+# Counter({"a": 3, "n": 2, "b": 1})
+
+
+================================================================================
+8. EXERCÍCIOS PRÁTICOS
+================================================================================
+
+8.1 MANIPULAÇÃO DE LISTAS
+--------------------------------------------------------------------------------
+# Exercício 1: Remover duplicatas preservando ordem
+def remover_duplicatas(lista):
+    return list(dict.fromkeys(lista))
+
+numeros = [1, 2, 3, 2, 1, 4, 5, 4, 3]
+print(remover_duplicatas(numeros))  # [1, 2, 3, 4, 5]
+
+# Exercício 2: Achatar lista de listas
+def achatar(lista):
+    resultado = []
+    for item in lista:
+        if isinstance(item, list):
+            resultado.extend(achatar(item))
+        else:
+            resultado.append(item)
+    return resultado
+
+aninhada = [1, [2, 3], [4, [5, 6]], 7]
+print(achatar(aninhada))  # [1, 2, 3, 4, 5, 6, 7]
+
+# Exercício 3: Dividir lista em pedaços
+def dividir_em_pedacos(lista, tamanho):
+    return [lista[i:i+tamanho] for i in range(0, len(lista), tamanho)]
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(dividir_em_pedacos(numeros, 3))
+# [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+8.2 MANIPULAÇÃO DE DICIONÁRIOS
+--------------------------------------------------------------------------------
+# Exercício 1: Mesclar dicionários
+def mesclar_dicionarios(*dicts):
+    resultado = {}
+    for d in dicts:
+        resultado.update(d)
+    return resultado
+
+# Ou em Python 3.9+:
+def mesclar_dicionarios(*dicts):
+    return {k: v for d in dicts for k, v in d.items()}
+
+d1 = {"a": 1, "b": 2}
+d2 = {"b": 3, "c": 4}
+d3 = {"d": 5}
+print(mesclar_dicionarios(d1, d2, d3))
+# {"a": 1, "b": 3, "c": 4, "d": 5}
+
+# Exercício 2: Inverter dicionário
+def inverter_dicionario(d):
+    return {v: k for k, v in d.items()}
+
+original = {"a": 1, "b": 2, "c": 3}
+print(inverter_dicionario(original))
+# {1: "a", 2: "b", 3: "c"}
+
+# Exercício 3: Agrupar por critério
+def agrupar_por(lista, chave):
+    grupos = {}
+    for item in lista:
+        k = chave(item)
+        if k not in grupos:
+            grupos[k] = []
+        grupos[k].append(item)
+    return grupos
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+por_paridade = agrupar_por(numeros, lambda x: "par" if x % 2 == 0 else "ímpar")
+print(por_paridade)
+# {"ímpar": [1, 3, 5, 7, 9], "par": [2, 4, 6, 8, 10]}
+
+8.3 MANIPULAÇÃO DE CONJUNTOS
+--------------------------------------------------------------------------------
+# Exercício 1: Encontrar elementos únicos em múltiplas listas
+def elementos_unicos(*listas):
+    todos = set()
+    for lista in listas:
+        todos.update(lista)
+    
+    unicos = set()
+    for elemento in todos:
+        count = sum(1 for lista in listas if elemento in lista)
+        if count == 1:
+            unicos.add(elemento)
+    
+    return unicos
+
+l1 = [1, 2, 3, 4]
+l2 = [3, 4, 5, 6]
+l3 = [5, 6, 7, 8]
+print(elementos_unicos(l1, l2, l3))
+# {1, 2, 7, 8}
+
+# Exercício 2: Verificar se lista é subconjunto de outra
+def e_subconjunto(lista1, lista2):
+    return set(lista1).issubset(set(lista2))
+
+print(e_subconjunto([1, 2], [1, 2, 3, 4]))  # True
+print(e_subconjunto([1, 5], [1, 2, 3, 4]))  # False
+
+8.4 PROJETO COMPLETO: SISTEMA DE GERENCIAMENTO DE ALUNOS
+--------------------------------------------------------------------------------
+class GerenciadorAlunos:
+    def __init__(self):
+        # Dicionário de alunos: {id: dados}
+        self.alunos = {}
+        # Set de IDs para verificação rápida
+        self.ids = set()
+        # Próximo ID disponível
+        self.proximo_id = 1
+    
+    def adicionar_aluno(self, nome, idade, notas):
+        """Adiciona novo aluno"""
+        aluno_id = self.proximo_id
+        self.alunos[aluno_id] = {
+            "nome": nome,
+            "idade": idade,
+            "notas": notas.copy()  # Cópia da lista
+        }
+        self.ids.add(aluno_id)
+        self.proximo_id += 1
+        return aluno_id
+    
+    def remover_aluno(self, aluno_id):
+        """Remove aluno por ID"""
+        if aluno_id in self.ids:
+            del self.alunos[aluno_id]
+            self.ids.remove(aluno_id)
+            return True
+        return False
+    
+    def buscar_aluno(self, aluno_id):
+        """Busca aluno por ID"""
+        return self.alunos.get(aluno_id)
+    
+    def atualizar_notas(self, aluno_id, novas_notas):
+        """Atualiza notas do aluno"""
+        if aluno_id in self.ids:
+            self.alunos[aluno_id]["notas"] = novas_notas.copy()
+            return True
+        return False
+    
+    def calcular_media(self, aluno_id):
+        """Calcula média das notas"""
+        aluno = self.buscar_aluno(aluno_id)
+        if aluno and aluno["notas"]:
+            return sum(aluno["notas"]) / len(aluno["notas"])
+        return None
+    
+    def listar_aprovados(self, media_minima=7.0):
+        """Lista alunos aprovados"""
+        aprovados = []
+        for aluno_id, dados in self.alunos.items():
+            media = self.calcular_media(aluno_id)
+            if media and media >= media_minima:
+                aprovados.append({
+                    "id": aluno_id,
+                    "nome": dados["nome"],
+                    "media": media
+                })
+        return aprovados
+    
+    def estatisticas_turma(self):
+        """Retorna estatísticas da turma"""
+        if not self.alunos:
+            return None
+        
+        todas_notas = []
+        medias = []
+        
+        for aluno_id in self.ids:
+            aluno = self.alunos[aluno_id]
+            todas_notas.extend(aluno["notas"])
+            media = self.calcular_media(aluno_id)
+            if media:
+                medias.append(media)
+        
+        return {
+            "total_alunos": len(self.alunos),
+            "media_geral": sum(medias) / len(medias) if medias else 0,
+            "maior_nota": max(todas_notas) if todas_notas else 0,
+            "menor_nota": min(todas_notas) if todas_notas else 0,
+            "aprovados": len([m for m in medias if m >= 7.0]),
+            "reprovados": len([m for m in medias if m < 7.0])
+        }
+    
+    def alunos_por_faixa_etaria(self):
+        """Agrupa alunos por faixa etária"""
+        faixas = {
+            "menores_15": [],
+            "15_a_17": [],
+            "maiores_18": []
+        }
+        
+        for aluno_id, dados in self.alunos.items():
+            idade = dados["idade"]
+            nome = dados["nome"]
+            
+            if idade < 15:
+                faixas["menores_15"].append(nome)
+            elif idade <= 17:
+                faixas["15_a_17"].append(nome)
+            else:
+                faixas["maiores_18"].append(nome)
+        
+        return faixas
+
+# Exemplo de uso:
+sistema = GerenciadorAlunos()
+
+# Adicionar alunos
+id1 = sistema.adicionar_aluno("João", 16, [8.5, 7.0, 9.0])
+id2 = sistema.adicionar_aluno("Maria", 17, [9.0, 9.5, 10.0])
+id3 = sistema.adicionar_aluno("Pedro", 15, [6.0, 5.5, 7.0])
+id4 = sistema.adicionar_aluno("Ana", 18, [8.0, 8.5, 8.0])
+
+# Buscar aluno
+print("Aluno 1:", sistema.buscar_aluno(id1))
+
+# Calcular média
+print("Média do João:", sistema.calcular_media(id1))
+
+# Listar aprovados
+print("\nAprovados:")
+for aluno in sistema.listar_aprovados():
+    print(f"  {aluno['nome']}: {aluno['media']:.2f}")
+
+# Estatísticas
+print("\nEstatísticas da turma:")
+stats = sistema.estatisticas_turma()
+for chave, valor in stats.items():
+    print(f"  {chave}: {valor}")
+
+# Alunos por faixa etária
+print("\nPor faixa etária:")
+faixas = sistema.alunos_por_faixa_etaria()
+for faixa, nomes in faixas.items():
+    print(f"  {faixa}: {nomes}")
+
+
+================================================================================
+9. BOAS PRÁTICAS E DICAS
+================================================================================
+
+9.1 ESCOLHA A ESTRUTURA CERTA
+--------------------------------------------------------------------------------
+✅ Use lista quando:
+- Precisa manter ordem
+- Acessa por índice frequentemente
+- Elementos podem se repetir
+- Modifica elementos
+
+✅ Use tupla quando:
+- Dados não devem mudar
+- Retorna múltiplos valores
+- Usa como chave de dicionário
+- Pequeno ganho de performance importa
+
+✅ Use dicionário quando:
+- Precisa mapear chave → valor
+- Busca rápida é importante
+- Dados têm estrutura chave-valor
+- Acessa por identificador
+
+✅ Use set quando:
+- Precisa elementos únicos
+- Faz operações de conjunto
+- Remove duplicatas
+- Ordem não importa
+
+9.2 PERFORMANCE
+--------------------------------------------------------------------------------
+Teste de pertencimento:
+❌ Lento:  item in lista  # O(n)
+✅ Rápido: item in set    # O(1)
+
+Se precisar testar pertencimento muitas vezes, converta para set:
+lista_grande = list(range(10000))
+conjunto = set(lista_grande)
+# Muito mais rápido: 1000 in conjunto
+
+Criação:
+❌ Lento:  lista = []; for i in range(n): lista.append(i)
+✅ Rápido: lista = list(range(n))
+✅ Rápido: lista = [i for i in range(n)]
+
+Concatenação:
+❌ Lento:  resultado = []
+          for item in lista1: resultado.append(item)
+          for item in lista2: resultado.append(item)
+✅ Rápido: resultado = lista1 + lista2
+✅ Rápido: resultado = [*lista1, *lista2]
+
+9.3 LEGIBILIDADE
+--------------------------------------------------------------------------------
+Use comprehensions, mas com moderação:
+✅ Bom:
+pares = [x for x in numeros if x % 2 == 0]
+
+❌ Ruim (muito complexo):
+resultado = [y for x in lista1 for y in lista2 if x > 0 and y < 10 if x + y != 15]
+
+# Melhor dividir:
+candidatos = [(x, y) for x in lista1 for y in lista2]
+resultado = [y for x, y in candidatos if x > 0 and y < 10 and x + y != 15]
+
+Use nomes descritivos:
+❌ Ruim:
+d = {"n": "João", "a": 25}
+
+✅ Bom:
+pessoa = {"nome": "João", "idade": 25}
+
+Desempacote quando apropriado:
+❌ Ruim:
+ponto = (10, 20)
+x = ponto[0]
+y = ponto[1]
+
+✅ Bom:
+x, y = ponto
+
+9.4 SEGURANÇA E EVITAR ERROS
+--------------------------------------------------------------------------------
+Verifique existência antes de acessar:
+❌ Ruim:
+valor = dicionario[chave]  # Pode gerar KeyError
+
+✅ Bom:
+valor = dicionario.get(chave, valor_padrao)
+
+Ou:
+if chave in dicionario:
+    valor = dicionario[chave]
+
+Cuidado ao modificar durante iteração:
+❌ NUNCA faça:
+for item in lista:
+    lista.remove(item)  # Comportamento imprevisível!
+
+✅ Faça:
+lista = [item for item in lista if condicao]
+
+Ou:
+for item in lista[:]:  # Itera sobre cópia
+    if condicao:
+        lista.remove(item)
+
+Cuidado com referências:
+❌ Cuidado:
+lista1 = [1, 2, 3]
+lista2 = lista1  # Mesma referência!
+lista2.append(4)
+print(lista1)  # [1, 2, 3, 4] - modificada!
+
+✅ Copie quando necessário:
+lista2 = lista1.copy()
+lista2 = lista1[:]
+lista2 = list(lista1)
+
+9.5 TRUQUES E IDIOMAS PYTHON
+--------------------------------------------------------------------------------
+Trocar valores:
+a, b = b, a
+
+Criar dicionário com zip:
+chaves = ["a", "b", "c"]
+valores = [1, 2, 3]
+dicionario = dict(zip(chaves, valores))
+
+Contar com get:
+contador = {}
+for item in lista:
+    contador[item] = contador.get(item, 0) + 1
+
+Mesclar dicionários (Python 3.9+):
+combinado = d1 | d2
+
+Desempacotar em chamada de função:
+def funcao(a, b, c):
+    return a + b + c
+
+lista = [1, 2, 3]
+resultado = funcao(*lista)
+
+dicionario = {"a": 1, "b": 2, "c": 3}
+resultado = funcao(**dicionario)
+
+Verificar se sequência está vazia:
+❌ Ruim:  if len(lista) == 0:
+✅ Bom:   if not lista:
+
+❌ Ruim:  if len(lista) > 0:
+✅ Bom:   if lista:
+
+Obter valor ou inserir:
+# Tradicional:
+if chave not in dicionario:
+    dicionario[chave] = []
+dicionario[chave].append(valor)
+
+# Melhor:
+dicionario.setdefault(chave, []).append(valor)
+
+9.6 EVITE ARMADILHAS COMUNS
+--------------------------------------------------------------------------------
+Argumento padrão mutável:
+❌ NUNCA:
+def funcao(lista=[]):  # Lista é compartilhada entre chamadas!
+    lista.append(1)
+    return lista
+
+✅ FAÇA:
+def funcao(lista=None):
+    if lista is None:
+        lista = []
+    lista.append(1)
+    return lista
+
+Compreensão vs loop:
+❌ Desnecessário:
+quadrados = []
+for x in range(10):
+    quadrados.append(x**2)
+
+✅ Use comprehension:
+quadrados = [x**2 for x in range(10)]
+
+Mas loops são OK para lógica complexa!
+
+range(len()) quando desnecessário:
+❌ Ruim:
+for i in range(len(lista)):
+    print(lista[i])
+
+✅ Bom:
+for item in lista:
+    print(item)
+
+✅ Quando precisa do índice:
+for i, item in enumerate(lista):
+    print(f"{i}: {item}")
+
+
+================================================================================
+RESUMO RÁPIDO
+================================================================================
+
+CRIAÇÃO:
+lista = [1, 2, 3]
+tupla = (1, 2, 3)
+dicionario = {"a": 1, "b": 2}
+conjunto = {1, 2, 3}
+
+ACESSO:
+lista[0]           # Por índice
+tupla[0]           # Por índice
+dicionario["a"]    # Por chave
+# conjunto não tem acesso direto
+
+MODIFICAÇÃO:
+lista[0] = 10           # ✅
+tupla[0] = 10           # ❌ Imutável
+dicionario["a"] = 10    # ✅
+conjunto.add(4)         # ✅ (mas não modifica elemento)
+
+MÉTODOS PRINCIPAIS:
+# Lista:
+.append()  .extend()  .insert()  .remove()  .pop()
+.sort()    .reverse() .index()   .count()   .clear()
+
+# Dicionário:
+.get()     .keys()    .values()  .items()
+.update()  .pop()     .setdefault()
+
+# Set:
+.add()     .remove()  .discard() .pop()
+.union()   .intersection()  .difference()
+
+COMPREHENSIONS:
+lista = [x**2 for x in range(10)]
+dicionario = {x: x**2 for x in range(10)}
+conjunto = {x**2 for x in range(10)}
+
+OPERAÇÕES:
+lista1 + lista2        # Concatenação
+lista * 3              # Repetição
+item in lista          # Pertencimento
+len(lista)             # Tamanho
+
+set1 | set2            # União
+set1 & set2            # Interseção
+set1 - set2            # Diferença
+set1 ^ set2            # Diferença simétrica
+
+FUNÇÕES ÚTEIS:
+enumerate(lista)       # Adiciona índice
+zip(lista1, lista2)    # Combina listas
+sorted(lista)          # Ordena
+reversed(lista)        # Inverte
+all(lista)            # Todos True?
+any(lista)            # Algum True?
+
+CONVERSÕES:
+list(tupla)
+tuple(lista)
+set(lista)
+dict(pares)
+
+
+================================================================================
+DOCUMENTAÇÃO OFICIAL DO PYTHON - ESTRUTURAS DE DADOS
+================================================================================
+
+================================================================================
+PRINCIPAL - ESTRUTURAS DE DADOS
+================================================================================
+https://docs.python.org/3/tutorial/datastructures.html
+Tutorial oficial completo sobre estruturas de dados
+
+================================================================================
+LISTAS
+================================================================================
+https://docs.python.org/3/library/stdtypes.html#list
+Referência completa de listas
+
+https://docs.python.org/3/tutorial/datastructures.html#more-on-lists
+Mais sobre listas
+
+https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+List comprehensions
+
+================================================================================
+TUPLAS
+================================================================================
+https://docs.python.org/3/library/stdtypes.html#tuple
+Referência completa de tuplas
+
+https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences
+Tuplas e sequências
+
+================================================================================
+DICIONÁRIOS
+================================================================================
+https://docs.python.org/3/library/stdtypes.html#dict
+Referência completa de dicionários
+
+https://docs.python.org/3/tutorial/datastructures.html#dictionaries
+Dicionários no tutorial
+
+================================================================================
+CONJUNTOS (SETS)
+================================================================================
+https://docs.python.org/3/library/stdtypes.html#set
+Referência completa de sets
+
+https://docs.python.org/3/tutorial/datastructures.html#sets
+Sets no tutorial
+
+================================================================================
+MÓDULO COLLECTIONS
+================================================================================
+https://docs.python.org/3/library/collections.html
+Tipos de dados especializados
+
+https://docs.python.org/3/library/collections.html#collections.defaultdict
+defaultdict
+
+https://docs.python.org/3/library/collections.html#collections.Counter
+Counter
+
+https://docs.python.org/3/library/collections.html#collections.OrderedDict
+OrderedDict
+
+https://docs.python.org/3/library/collections.html#collections.deque
+deque (fila de duas pontas)
+
+================================================================================
+FUNÇÕES BUILT-IN RELACIONADAS
+================================================================================
+https://docs.python.org/3/library/functions.html#enumerate
+enumerate()
+
+https://docs.python.org/3/library/functions.html#zip
+zip()
+
+https://docs.python.org/3/library/functions.html#sorted
+sorted()
+
+https://docs.python.org/3/library/functions.html#reversed
+reversed()
+
+https://docs.python.org/3/library/functions.html#filter
+filter()
+
+https://docs.python.org/3/library/functions.html#map
+map()
+
+https://docs.python.org/3/library/functions.html#all
+all()
+
+https://docs.python.org/3/library/functions.html#any
+any()
+
+================================================================================
+OPERAÇÕES COMUNS
+================================================================================
+https://docs.python.org/3/library/stdtypes.html#common-sequence-operations
+Operações comuns de sequências
+
+https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types
+Tipos de sequências mutáveis
+
+https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset
+Tipos de conjunto
+
+================================================================================
+					AGRIPPA
+================================================================================
